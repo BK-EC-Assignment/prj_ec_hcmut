@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <meta charset="UTF-8">
+    <title>My app</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/pnotify.css">
+    <link rel="stylesheet" href="/public/css/jquery-ui.css">
+    <link rel="stylesheet" href="/public/css/pnotify.mobile.css">
+    <link rel="stylesheet" href="/public/css/pnotify.brighttheme.css">
+    <link rel="stylesheet" href="/public/css/pnotify.buttons.css">
+    <link rel="stylesheet" href="/public/css/pnotify.history.css">
+    <link rel="stylesheet" href="/public/css/loading_cssload.css">
+    <link rel="stylesheet" href="/public/css/selectize.bootstrap3.css">
+    <script src="/public/lib/babel.min.js"></script>
+    <script src="/public/lib/jquery.min.js"></script>
+    <script src="/public/lib/bootstrap.min.js"></script>
+    <script src="/public/lib/cookie.js"></script>
+    <script src="/public/lib/react.js"></script>
+    <script src="/public/lib/JSXTransformer-0.13.3.js"></script>
+    <script src="/public/lib/react-dom.js"></script>
+    <script src="/public/lib/react-loading.js"></script>
+    <script src="/public/lib/axios.min.js"></script>
+    <script src="/public/lib/validator.js"></script>
+    <script src="/public/lib/pnotify.js"></script>
+    <script src="/public/lib/pnotify.animate.js"></script>
+    <script src="/public/lib/pnotify.buttons.js"></script>
+    <script src="/public/lib/pnotify.callbacks.js"></script>
+    <script src="/public/lib/pnotify.confirm.js"></script>
+    <script src="/public/lib/pnotify.desktop.js"></script>
+    <script src="/public/lib/pnotify.history.js"></script>
+    <script src="/public/lib/pnotify.mobile.js"></script>
+    <script src="/public/lib/pnotify.nonblock.js"></script>
+    <script src="/public/lib/jquery-ui.min.js"></script>
+    <script src="/public/lib/selectize.min.js"></script>
+
+    <style>
+      .scrolling {
+        height: 50px;
+        overflow: hidden;
+        position: relative;;
+        margin-left: 120px;
+        margin-top: 20px;
+        margin-right: 600px;
+      }
+
+      .scrolling h3 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        margin-top: 15px;
+        line-height: 50px;
+        text-align: center;
+        /* Starting position */
+        -moz-transform:translateX(100%);
+        -webkit-transform:translateX(100%);
+        transform:translateX(100%);
+        /* Apply animation to this element */
+        -moz-animation: scrolling 15s linear infinite;
+        -webkit-animation: scrolling 15s linear infinite;
+        animation: scrolling 15s linear infinite;
+      }
+
+      /* Move it (define the animation) */
+      @-moz-keyframes scrolling {
+       0%   { -moz-transform: translateX(100%); }
+       100% { -moz-transform: translateX(-100%); }
+      }
+      @-webkit-keyframes scrolling {
+       0%   { -webkit-transform: translateX(100%); }
+       100% { -webkit-transform: translateX(-100%); }
+      }
+      @keyframes scrolling {
+       0%   {
+       -moz-transform: translateX(100%); /* Firefox bug fix */
+       -webkit-transform: translateX(100%); /* Firefox bug fix */
+       transform: translateX(100%);
+       }
+       100% {
+       -moz-transform: translateX(-100%); /* Firefox bug fix */
+       -webkit-transform: translateX(-100%); /* Firefox bug fix */
+       transform: translateX(-100%);
+       }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/javascript" src="index_bundle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+.border {
+	border: solid 1px black;
+}
+.padding-none {
+	padding: 0;
+}
+.grid-header {
+	font-size: 20px;
+	color: #1a1a1a;
+	margin: 40px 0px 20px;
+	border-bottom: solid 1px  #595959;
+}
+.grid-products {
+	font-family: Arial, sans-serif;
+
+}
+.grid-figure:hover {
+	box-shadow: 2px 2px 2px #888888;
+}
+.grid-figure {
+	line-height: 25px;
+	height: 347px;
+	border: 1px solid #ececec;
+	background: white;
+}
+
+.title {
+	height: 75px;
+	font-size: 15px;
+	font-weight: bold;
+	overflow: hidden;
+}
+.price {
+	font-size: 17px;
+
+	color:  #e60000;
+	font-weight: bold;
+}
+.due {
+	color: #404040;
+	font-size: 13px;
+}
