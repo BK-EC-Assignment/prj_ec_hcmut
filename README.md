@@ -1,10 +1,12 @@
 # Project ECommerce - HCMUT
 
-## member: luongquocdinh,  phamtrantri
+### member: luongquocdinh,  phamtrantri
 
 ### Install OrientDB
 
-> npm install
-> npm run start
+```
+npm install
+npm run start
+```
 
-(https://localhost:7770)
+* (https://localhost:7770)
