@@ -34,6 +34,7 @@ app.use(seneca.export('web'))
 
 seneca.use('./../lib/registerAPI')
 seneca.use('./../lib/loginAPI')
+seneca.use('./../lib/logoutAPI')
 
 app.use('/', routes)
 
