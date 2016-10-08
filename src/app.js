@@ -33,6 +33,7 @@ app.use(express.static('public'))
 app.use(seneca.export('web'))
 
 seneca.use('./../lib/registerAPI')
+seneca.use('./../lib/loginAPI')
 
 app.use('/', routes)
 
