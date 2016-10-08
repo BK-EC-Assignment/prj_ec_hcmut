@@ -23,6 +23,10 @@ var ERROR = {
     code: 500,
     message: 'Some thing wrong, please try late!'
   },
+  INVALID_PARAMS: {
+    code: 404,
+    message: 'Your data input is invalid!'
+  }
 }
 
 var SUCCESS = {
