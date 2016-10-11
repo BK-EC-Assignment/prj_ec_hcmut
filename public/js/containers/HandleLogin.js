@@ -19,13 +19,14 @@ var HandleLogin = React.createClass({
     })
   },
 
-  handllePass: function (e) {
+  handlePass: function (e) {
     this.setState({
       password: e.target.value
     })
   },
 
-  handleSubmitUser: function () {
+  handleSubmitUser: function (e) {
+    e.preventDefault();
     if (this.state.email === null || this.state.password === null) {
       PNotify.removeAll();
       new PNotify({
@@ -34,10 +35,8 @@ var HandleLogin = React.createClass({
         text: 'Please fill out both textboxes!'
       })
     } else {
-      console.log(this.state.email)
       axios.post('/api/users/login', {email: this.state.email, password: this.state.password})
         .then(function (res) {
-          console.log(res)
           if (res.data.meta.success === 1) {
             this.setState({
               token: res.data.response.user.information.token,
@@ -49,7 +48,17 @@ var HandleLogin = React.createClass({
             document.cookie = "role = " + this.state.role
             document.cookie = "email = " + this.state.email
             document.cookie = "username = " + this.state.username
-            window.location = '/'
+
+            PNotify.removeAll();
+            new PNotify({
+              type: 'success',
+              title: 'Successful',
+              text: res.data.meta.message
+            })
+
+            this.context.router.push({
+              pathname: '/',
+            })
           } else {
             PNotify.removeAll();
             new PNotify({
