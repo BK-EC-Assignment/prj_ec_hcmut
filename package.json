@@ -5,8 +5,8 @@
   "subdomain": "ggg",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon bin/index.js",
-    "dev": "webpack-dev-server"
+    "dev": "nodemon bin/index.js",
+    "start": "webpack-dev-server"
   },
   "repository": "",
   "author": "Team web 3G",
@@ -61,6 +61,7 @@
     "superagent": "^2.0.0",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
+    "webpack-dev-server": "^1.16.2",
     "xmlhttprequest": "^1.8.0"
   }
 }
