@@ -56,7 +56,6 @@ var HandleRegister = React.createClass({
     } else {
       axios.post('/api/users/register', {username: this.state.username, email: this.state.email, password: this.state.password, address: this.state.address})
         .then(function (res) {
-          console.log(res)
           if (res.data.meta.success === 1) {
             PNotify.removeAll();
             new PNotify({

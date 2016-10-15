@@ -1,4 +1,6 @@
 var React = require('react');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 var PropTypes = React.PropTypes;
 
 function Login (props) {
@@ -25,6 +27,7 @@ function Login (props) {
           </div>
           <button type="submit" className="btn btn-sm btn-default">Sign in</button>
         </form>
+          <div className="signup"><Link to="/signup"><span>Đăng ký</span></Link></div>
       </div>
     </div>
   )

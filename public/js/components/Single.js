@@ -116,23 +116,23 @@ var Single = React.createClass({
 									<ul>
 										<li>
 											<span className="username">Phạm Trần Trí</span>
-											<span className="bidding-price">4 800 000 đ</span>
+											<span className="bidding-time">11/6/2016 12:12</span>
 										</li>
 										<li>
 											<span className="username">Lương Quốc Dinh</span>
-											<span className="bidding-price">4 500 000 đ</span>
+											<span className="bidding-time">11/6/2016 12:11</span>
 										</li>
 										<li>
 											<span className="username">Lương Quốc Dinh</span>
-											<span className="bidding-price">4 500 000 đ</span>
+											<span className="bidding-time">11/6/2016 12:09</span>
 										</li>
 										<li>
 											<span className="username">Lương Quốc Dinh</span>
-											<span className="bidding-price">4 500 000 đ</span>
+											<span className="bidding-time">11/6/2016 12:08</span>
 										</li>
 										<li>
 											<span className="username">Lương Quốc Dinh</span>
-											<span className="bidding-price">4 500 000 đ</span>
+											<span className="bidding-time">11/6/2016 12:03</span>
 										</li>
 									</ul>
 									<div className="col-md-12">
