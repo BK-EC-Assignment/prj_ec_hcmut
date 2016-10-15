@@ -3,7 +3,57 @@ var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
 var Header = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
+  getInitalState: function () {
+    return ({
+      token: getCookie('token')
+    })
+  },
+
+  handleLogout: function () {
+    var token = getCookie('token')
+    if (!token) {
+      PNotify.removeAll();
+      new PNotify ({
+        type: 'error',
+        title: 'Error',
+        text: 'Token is empty'
+      })
+    } else {
+      axios.post('/api/users/logout', {token: token}).then(function (res) {
+        if (res.data.meta.success === 1) {
+          deleteAllCookies()
+          this.context.router.push({
+            pathname: '/',
+          })
+        } else {
+          PNotify.removeAll();
+          new PNotify({
+            type: 'error',
+            title: 'Error!',
+            text: 'Token is not exist!'
+          })
+        }
+      }.bind(this))
+    }
+  },
+
   render: function () {
+    var self = this
+    var token = getCookie('token')
+    function button() {
+      if (!token) return (
+        <Link to="/login">
+          <button type="button" className="btn btn-success" id="login-button">Đăng nhập</button>
+        </Link>
+      )
+      else return (
+        <button type="button" onClick={self.handleLogout} className="btn btn-success" id="login-button">Đăng xuất</button>
+      )
+    }
     return (
       <div className="container-fluid">
         <div id="wrapper" className="row">
@@ -25,9 +75,7 @@ var Header = React.createClass({
               </div>
             </div>
             <div id="side-right" className="col-md-3 col-sm-4 col-xs-3">
-                <Link to="/login">
-                  <button type="button" className="btn btn-success" id="login-button">Đăng nhập</button>
-                </Link>
+                {button()}
             </div>
           </div>
           <div id="navigator" className="col-md-12 col-sm-12 padding">
