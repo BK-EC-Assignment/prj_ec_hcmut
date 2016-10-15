@@ -81,12 +81,6 @@
   width: 95px;
 
 }
-#signup-button {
-  border-radius: 0;
-  height: 40px;
-  width: 95px;
-
-}
 #navigator {
   height: 40px;
   line-height: 40px;
@@ -116,6 +110,7 @@
 }
 #tabs li button:focus {
   outline: none;
+
 }
 #nav-left {
 }

@@ -13,10 +13,10 @@ var Categories = React.createClass({
 						</ol>
 					</div>
 					<div className="col-md-12 col-sm-12 col-xs-12 category-main">
-						<div className="col-md-10 col-sm-10 col-xs-10 padding deco-border">
+						<div className="col-md-10 col-sm-10 col-xs-8 padding deco-border">
 							<header>ĐỒ ĐIỆN TỬ</header>
 						</div>
-						<div className="col-md-2 col-sm-2 col-xs-2 select deco-border">
+						<div className="col-md-2 col-sm-2 col-xs-4 select deco-border">
 							<select>
 								<option disabled selected>Xếp theo</option>
 								<option>Giá tăng dần</option>
@@ -53,7 +53,6 @@ var Categories = React.createClass({
 									Đang đấu giá
 								</div>
 							</div>
-
 							<div className="col-md-12 col-sm-12 col-xs-12 category-product">
 								<div className="col-md-6 col-sm-6 col-xs-6 main-left">
 									<div className="col-md-5 col-sm-4">
@@ -76,9 +75,7 @@ var Categories = React.createClass({
 									Đang đấu giá
 								</div>
 							</div>
-
 						</div>
-
 					</div>
 				</div>
 			</div>

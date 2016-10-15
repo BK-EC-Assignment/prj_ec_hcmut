@@ -8,13 +8,13 @@ var Header = React.createClass({
       <div className="container-fluid">
         <div id="wrapper" className="row">
           <div id="header-container" className="col-md-12 col-sm-12 col-xs-12 padding">
-            <div id="deco-nav" className="col-md-12"></div>
+            <div id="deco-nav" className="col-md-12 col-sm-12 col-xs-12"></div>
             <div id="logo" className="col-md-3 col-sm-1">
               <Link to="/">
                 <img id="logo" src="../public/js/images/logo.png" alt="HCMUT"/>
               </Link>
             </div>
-            <div id="main-search" className="col-md-6 col-sm-5">
+            <div id="main-search" className="col-md-6 col-sm-5 col-xs-7">
               <div className="form-group">
                 <div id="div-search" className="col-md-10 col-sm-10 col-xs-10">
                   <input type="text" className="form-control" id="search-input" placeholder="Tôi muốn mua ..."/>
@@ -24,17 +24,10 @@ var Header = React.createClass({
                 </div>
               </div>
             </div>
-            <div id="side-right" className="col-md-3 col-sm-4">
-              <div className="col-md-6 col-sm-6 col-xs-6">
+            <div id="side-right" className="col-md-3 col-sm-4 col-xs-3">
                 <Link to="/login">
                   <button type="button" className="btn btn-success" id="login-button">Đăng nhập</button>
                 </Link>
-              </div>
-              <div className="col-md-6 col-sm-6 col-xs-6">
-                <Link to ="/signup">
-                  <button type="button" className="btn btn-success" id="signup-button">Đăng ký</button>
-                </Link>
-              </div>
             </div>
           </div>
           <div id="navigator" className="col-md-12 col-sm-12 padding">
@@ -49,17 +42,22 @@ var Header = React.createClass({
               </div>
 
             </div>
-            <div className="col-md-6 col-sm-6 col-xs-8">
+            <div className="col-md-6 col-sm-8 col-xs-7">
               <ul id="tabs">
-                <li>
+                <li className="hidden-xs">
                   <Link to="/">
-                    <button className="dropbtn">Trang chủ</button>
+                    <button className="dropbtn ">Trang chủ</button>
                   </Link>
                 </li>
 
                 <li>
                   <Link to="/single">
                     <button className="dropbtn">Đang đấu giá</button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/profile">
+                    <button className="dropbtn">Trang cá nhân</button>
                   </Link>
                 </li>
               </ul>

@@ -1,0 +1,92 @@
+
+.user-main {
+  background: #fff;
+}
+.user-header {
+  font-size: 24px;
+  color: #0d0d0d;
+  letter-spacing: -0.5px;
+  margin-top: 25px;
+}
+.user-body {
+  margin-top: 20px;
+}
+.user-body-header {
+	display: inline-block;
+	list-style: none;
+	padding-left: 0;
+	width: 100%;
+	border-bottom: 1px solid #e8e8e8;
+
+}
+.user-body-header li{
+  display: inline-block;
+}
+.user-body-header li button {
+  text-align: center;
+  height: 50px;
+	font-size: 15px;
+	color:#0d0d0d;
+	padding-right: 20px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.user-body-header li button:hover {
+	border-bottom: 4px solid #6694ff;
+}
+.user-body-header li button:focus {
+	border: none;
+	outline: none;
+  border-bottom: 4px solid #6694ff;
+}
+.user-body-main {
+  margin-top: 25px;
+}
+.user-body-right header label {
+  font-size: 22px;
+}
+.user-body-right header ul {
+  padding:0;
+  float:right;
+}
+.user-body-right ul li {
+  display: inline-block;
+  padding-left: 30px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.body-bid-img img {
+  height: 240px;
+  width: 240px;
+}
+.list-info {
+  margin-top: 20px;
+  line-height: 30px;
+}
+.list-info span {
+  display: block;
+}
+.list-info-left {
+  font-size: 18px;
+}
+.user-price, .expected-price {
+  font-size: 22px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+.user-price {
+  color: #fb4e4a;
+}
+.expected-price {
+  color: #6ECA62;
+}
+.body-avatar img {
+  width: 160px;
+  height: 200px;
+}
+.user-form {
+  margin-top: 30px;
+}
+.user-form label {
+  margin-top: 20px;
+}
