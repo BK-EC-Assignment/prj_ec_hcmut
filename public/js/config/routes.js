@@ -9,7 +9,7 @@ var Home = require("../components/Home");
 var Login = require('../containers/HandleLogin');
 var Single = require('../components/Single');
 var Categories = require('../components/Categories');
-var SignUp = require('../components/SignUp');
+var SignUp = require('../containers/HandleRegister');
 
 var routes = (
   <Router history={hashHistory}>

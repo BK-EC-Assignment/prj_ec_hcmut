@@ -24,7 +24,7 @@ function insertData (input, value) {
       salt: newSalt,
       password: crypto.createHmac('sha256', newSalt).update(input.password).digest('hex'),
       token: encode(input.email, newSalt),
-      active: false,
+      active: true,
       address: input.address,
       role: 'user'
     }
