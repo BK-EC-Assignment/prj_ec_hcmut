@@ -26,6 +26,14 @@ var ERROR = {
   INVALID_PARAMS: {
     code: 404,
     message: 'Your data input is invalid!'
+  },
+  MISSING_PRODUCT: {
+    code: 404,
+    message: 'Product not found'
+  },
+  MISSING_COST: {
+    code: 404,
+    message: 'Cost not enough!'
   }
 }
 
