@@ -15,7 +15,7 @@
 
 }
 .grid-figure:hover {
-	box-shadow: 2px 2px 2px #888888;
+	border-bottom: 4px solid #6694ff;
 }
 .grid-figure {
 	line-height: 25px;
@@ -29,6 +29,10 @@
 	font-size: 15px;
 	font-weight: bold;
 	overflow: hidden;
+	color: #333;
+}
+.title:hover {
+	text-decoration: underline;
 }
 .price {
 	font-size: 17px;

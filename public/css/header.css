@@ -97,7 +97,6 @@
   overflow: hidden;
   display: inline-block;
   vertical-align: top;
-
 }
 #tabs li {
   display: inline-block;
@@ -107,15 +106,16 @@
   font-weight: 600;
 
 }
-#tabs li a {
-  color: #555;
+#tabs li button {
+  outline: none
   text-decoration: none;
+
 }
-#tabs li a:hover {
-  color: black;
+#tabs li button:hover {
+  border-bottom: 4px solid #6694ff;
 }
-#tabs li a:focus {
-  color: black;
+#tabs li button:focus {
+  outline: none;
 }
 #nav-left {
 }

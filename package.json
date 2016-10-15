@@ -5,18 +5,18 @@
   "subdomain": "ggg",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon bin/index.js",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "start": "nodemon bin/index.js"
   },
   "repository": "",
   "author": "Team web 3G",
   "license": "MIT",
   "standard": {
     "ignore": [
-      "test/**/*.js",
-      "public/**/*.js",
-      "modules/add_user_modules/MailRegex.js",
       "helper/config/MailRegex.js",
+      "modules/add_user_modules/MailRegex.js",
+      "public/**/*.js",
+      "test/**/*.js",
       "webpack.config.js"
     ]
   },

@@ -1,16 +1,17 @@
 footer {
 	margin-top: 20px;
-	background-color: #262626;
+	background-color: #white;
 	line-height: 28px;
+	border-top: #cc7a00 solid 4px;
 }
 footer h3 {
-	color: lavender;
+	color: #333;
 }
 footer hr {
-	border-color: lavender;
+	border-color: #333;
 }
 footer text {
-	color: lavender;
+	color: #333;
 	text-align: justify;
 	letter-spacing: 1px;
 

@@ -9,12 +9,14 @@ var Home = require("../components/Home");
 var Login = require('../containers/HandleLogin');
 var Single = require('../components/Single');
 var Categories = require('../components/Categories');
+var SignUp = require('../components/SignUp');
 
 var routes = (
   <Router history={hashHistory}>
     <Route path='/' component={Main}>
       <IndexRoute component={Home} />
       <Route path='/login' header="Login" component={Login} />
+      <Route path='/signup' header="SignUp" component={SignUp}/>
       <Route path='/single' header="Single" component={Single} />
       <Route path="/category" header = "Categories" component={Categories} />
     </Route>
