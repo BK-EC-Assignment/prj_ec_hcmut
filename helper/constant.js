@@ -34,6 +34,10 @@ var ERROR = {
   MISSING_COST: {
     code: 404,
     message: 'Cost not enough!'
+  },
+  INVALID_TOKEN: {
+    code: 404,
+    message: 'Token not found'
   }
 }
 

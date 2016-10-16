@@ -60,6 +60,43 @@ var Header = React.createClass({
         <button type="button" onClick={self.handleLogout} className="btn btn-success" id="login-button">Đăng xuất</button>
       )
     }
+    function navigation() {
+      if (!token) return (
+        <ul id="tabs">
+          <li className="hidden-xs">
+            <Link to="/">
+              <button className="dropbtn ">Trang chủ</button>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/single">
+              <button className="dropbtn">Đang đấu giá</button>
+            </Link>
+          </li>
+        </ul>
+      )
+      else return (
+        <ul id="tabs">
+          <li className="hidden-xs">
+            <Link to="/">
+              <button className="dropbtn ">Trang chủ</button>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/single">
+              <button className="dropbtn">Đang đấu giá</button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/profile">
+              <button className="dropbtn">Trang cá nhân</button>
+            </Link>
+          </li>
+        </ul>
+      )
+    }
     return (
       <div className="container-fluid">
         <div id="wrapper" className="row">
@@ -97,24 +134,7 @@ var Header = React.createClass({
 
             </div>
             <div className="col-md-6 col-sm-8 col-xs-7">
-              <ul id="tabs">
-                <li className="hidden-xs">
-                  <Link to="/">
-                    <button className="dropbtn ">Trang chủ</button>
-                  </Link>
-                </li>
-
-                <li>
-                  <Link to="/single">
-                    <button className="dropbtn">Đang đấu giá</button>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/profile">
-                    <button className="dropbtn">Trang cá nhân</button>
-                  </Link>
-                </li>
-              </ul>
+              {navigation()}
             </div>
             <div className="col-md-3 col-sm-3">
             </div>
