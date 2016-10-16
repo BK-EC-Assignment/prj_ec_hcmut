@@ -26,6 +26,63 @@
   margin-top: 36px;
   margin-bottom: 10px;
 }
+#account-div {
+  margin-top: 5px;
+}
+#account-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 13px;
+}
+#account-name {
+  letter-spacing: 1px;
+  font-size: 13px;
+  margin-left:5px;
+}
+.account-dropdown {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  position: absolute;
+  border: 1px solid #e8e8e8;
+  width: 150px;
+  box-shadow: 2px 2px 2px #888888;
+  list-style: none;
+  padding-left: 10px;
+  display: none;
+  background: white;
+}
+#account-info:hover .account-dropdown {
+  display: block;
+  z-index: 10;
+}
+.account-dropdown li {
+  color: #737373;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.account-profile {
+  color: #737373;
+  text-decoration: none;
+}
+.account-profile:hover {
+  text-decoration:none;
+  color: black;
+}
+.account-profile:focus {
+  text-decoration:none;
+  color: black;
+}
+
+.account-dropdown li:hover {
+  color: black;
+}
+#logout-button {
+  background: white;
+  border: none;
+  outline: none;
+  margin-left: -4px;
+}
 #main-search {
   padding-top: 50px;
   padding-bottom: 20px;

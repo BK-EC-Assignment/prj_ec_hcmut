@@ -51,10 +51,10 @@ var UserPage = React.createClass({
   }
   else {
     tab = <div>
-      <div className="col-md-2 padding body-avatar">
+      <div className="col-md-3 padding body-avatar">
         <img src="../public/js/images/photo01.jpg"/>
       </div>
-      <div className="col-md-10 user-body-right padding">
+      <div className="col-md-9 user-body-right padding">
         <header>
           <label>
             Thông tin cá nhân
@@ -86,13 +86,15 @@ var UserPage = React.createClass({
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-12 col-sm-12 col-xs-12 padding">
+        <div className="col-md-1"></div>
+        <div className="col-md-11 col-sm-11 col-xs-11 padding">
           <ol className="breadcrumb">
             <li><Link to="/">Trang chủ</Link></li>
             <li className="active">TriPham</li>
           </ol>
         </div>
-        <div className="col-md-12 user-main">
+        <div className="col-md-1"></div>
+        <div className="col-md-10 user-main">
           <div className="col-md-12 padding user-header">
             Trang của tôi
           </div>
@@ -108,6 +110,7 @@ var UserPage = React.createClass({
             </div>
           </div>
         </div>
+        <div className="col-md-1"></div>
       </div>
     </div>
   )

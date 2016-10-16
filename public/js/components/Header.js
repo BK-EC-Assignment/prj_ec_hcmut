@@ -57,7 +57,16 @@ var Header = React.createClass({
         </Link>
       )
       else return (
-        <button type="button" onClick={self.handleLogout} className="btn btn-success" id="login-button">Đăng xuất</button>
+        <div id="account-div">
+          <div id="account-info">
+            <img id="account-img" src="../public/js/images/default_user.png"/>
+            <span id="account-name">Clark John</span>
+              <ul className="account-dropdown">
+                <li><Link to="/profile" className="account-profile">Thông tin cá nhân</Link></li>
+                <li><button type="button" onClick={self.handleLogout} id="logout-button" >Đăng xuất</button></li>
+              </ul>
+          </div>
+        </div>
       )
     }
     function navigation() {
