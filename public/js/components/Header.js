@@ -26,6 +26,12 @@ var Header = React.createClass({
       axios.post('/api/users/logout', {token: token}).then(function (res) {
         if (res.data.meta.success === 1) {
           deleteAllCookies()
+          PNotify.removeAll();
+          new PNotify({
+            type: 'success',
+            title: 'Logout!',
+            text: 'Logout Successful!'
+          })
           this.context.router.push({
             pathname: '/',
           })
