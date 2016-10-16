@@ -19,7 +19,7 @@ module.exports = function (input) {
           if (!profile) {
             throw GError(libError.error.EMAIL_INVALID)
           }
-          
+
           return {
             response:{
               user: {
@@ -34,7 +34,6 @@ module.exports = function (input) {
           }
         })
         .then(function (userInfo) {
-          console.log(userInfo)
           input.returnSuccessResponse(input.done, userInfo)
         }, function (error) {
           input.returnErrorResponse(input.done)

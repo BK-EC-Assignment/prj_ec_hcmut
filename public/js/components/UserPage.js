@@ -6,6 +6,10 @@ var UserPage = React.createClass({
   getInitialState: function() {
     return {
       userTab: 'bid',
+      username: '',
+      email: '',
+      phone: '',
+      address: ''
     }
   },
   handleBidClicked: function() {
@@ -13,6 +17,27 @@ var UserPage = React.createClass({
   },
   handleProfileClicked: function() {
     this.setState({userTab: 'profile'});
+    var token = getCookie('token')
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:7770/api/users/profile",
+      "method": "GET",
+      "headers": {
+        "token": token,
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache"
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
+      this.setState({
+        username: response.response.user.information.username,
+        email: response.response.user.information.email,
+        phone: response.response.user.information.phone,
+        address: response.response.user.information.address
+      })
+    }.bind(this));
   },
   render: function() {
     var flag = this.state.userTab;
@@ -64,19 +89,31 @@ var UserPage = React.createClass({
           <form role="form">
             <div className="form-group col-md-6">
               <label>Họ tên</label>
-              <input type="text" className="form-control" placeholder="Họ tên của bạn"/>
+              <input type="text"
+                  className="form-control"
+                  placeholder="Họ tên của bạn"
+                  value={this.state.username} />
             </div>
             <div className="form-group col-md-6">
               <label>Số điện thoại</label>
-              <input type="text" className="form-control" placeholder="Số điện thoại của bạn"/>
+              <input type="text"
+                  className="form-control"
+                  placeholder="Số điện thoại của bạn"
+                  value={this.state.phone} />
             </div>
             <div className="form-group col-md-6">
               <label>Email</label>
-              <input type="email" className="form-control" placeholder="Email của bạn"/>
+              <input type="email"
+                  className="form-control"
+                  placeholder="Email của bạn"
+                  value={this.state.email} />
             </div>
             <div className="form-group col-md-6">
               <label>Địa chỉ</label>
-              <input type="email" className="form-control" placeholder="Địa chỉ nhà"/>
+              <input type="text"
+                  className="form-control"
+                  placeholder="Địa chỉ nhà"
+                  value={this.state.address} />
             </div>
           </form>
         </div>
