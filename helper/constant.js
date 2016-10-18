@@ -38,6 +38,10 @@ var ERROR = {
   INVALID_TOKEN: {
     code: 404,
     message: 'Token not found'
+  },
+  HANDLE_FAIL: {
+    code: 500,
+    message: 'Some thing wrong, please try late!'
   }
 }
 
