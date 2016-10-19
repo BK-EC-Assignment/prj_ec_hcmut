@@ -11,7 +11,7 @@ module.exports = function (input) {
       if (!user) {
         throw GError(libError.INVALID_TOKEN)
       }
-      return database.query('select from Product where status = true order by date desc')
+      return database.query('select from Product where status = true order by time desc')
     }).then(function (response) {
       if (!response) {
         throw GError(libError.HANDLE_FAIL)

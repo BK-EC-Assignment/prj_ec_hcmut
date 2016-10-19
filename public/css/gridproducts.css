@@ -44,10 +44,33 @@
 	font-size: 13px;
 }
 
-.rewardImage img {
+/*.rewardImage img {
 	vertical-align:middle;
   height: 220px;
 	width: 260px;
+}*/
+
+.rewardImage {
+  height: 200px;
+}
+
+.thumbnail_wrapper {
+  border-bottom: 1px solid #d6d6d6;
+  text-align: center;
+}
+
+.thumbnail_wrapper::before {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.thumbnail_wrapper> img {
+  max-width: 100%;
+  max-height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .thumbnailDes:hover .rewardImage {

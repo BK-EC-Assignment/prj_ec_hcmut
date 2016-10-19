@@ -31,7 +31,7 @@ var GridProducts = React.createClass({
 	render: function() {
 		var Product = this.state.productList.map(function (product, i) {
 			return (
-				<div className="col-md-3 col-sm-3 col-xs-6 grid-figure" key={i+1}>
+				<div className="col-md-2 col-sm-3 col-xs-6 grid-figure" key={i+1}>
 					<Link to="/single">
 					<figure>
 						<div className="rewardImage thumbnail_wrapper">
