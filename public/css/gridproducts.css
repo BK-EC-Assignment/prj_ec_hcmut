@@ -43,3 +43,13 @@
 	color: #404040;
 	font-size: 13px;
 }
+
+.rewardImage img {
+	vertical-align:middle;
+  height: 220px;
+	width: 260px;
+}
+
+.thumbnailDes:hover .rewardImage {
+  display: none;
+}
