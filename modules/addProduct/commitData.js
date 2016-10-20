@@ -2,7 +2,7 @@ var database = require('../../models/index.js').database
 var fs = require('fs')
 
 module.exports = function (input, fields, files) {
-  if ((fields.name) && (files.picture) && (fields.description)) {
+  if ((fields.name) && (files.picture) && (fields.description) && (fields.time)) {
     var path = files.picture.path
     var data = {
       time: fields.time,
@@ -14,12 +14,15 @@ module.exports = function (input, fields, files) {
       cost_min: fields.cost_min,
       cost_expected: fields.cost_expected
     }
+    console.log(data)
     return database.create('VERTEX', 'Product').set(data).one()
       .then(
         function (value) {
+          console.log(value)
           return input.success(input.done)
         },
         function () {
+          console.log('error')
           return input.errHandle(input.done)
         })
   } else {
