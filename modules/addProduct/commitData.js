@@ -5,7 +5,7 @@ module.exports = function (input, fields, files) {
   if ((fields.name) && (files.picture) && (fields.description)) {
     var path = files.picture.path
     var data = {
-      time: Math.floor(Date.now() / 1000),
+      time: fields.time,
       description: (fields.description) ? fields.description : '',
       status: true,
       name: fields.name,
