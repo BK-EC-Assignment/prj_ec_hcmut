@@ -6,7 +6,39 @@ var Single = React.createClass({
 	getInitialState: function() {
 		return {
 			flag: 'img',
+			bidtime: '16:00:10',
 		}
+	},
+	handleStopWatch: function() {
+		var bidtime = this.state.bidtime;
+		var timeArr = bidtime.split(':');
+		var second = timeArr[2], minute = timeArr[1], hour = timeArr[0];
+		var time = this.countdownTime(hour, minute, second);
+		var joinTime = time.hour.toString().concat(':').concat(time.minute).concat(':').concat(time.second);
+		this.setState({bidtime: joinTime});
+		setTimeout(this.handleStopWatch,1000);
+
+	},
+	countdownTime: function(hour, minute, second) {
+		second = second - 1;
+		if (second == -1) {
+			second = 59;
+			minute = minute - 1;
+			if (minute == -1) {
+				minute = 59;
+				hour = hour-1;
+			}
+		}
+		if (second.toString().length == 1) {
+			second = '0' + second;
+		}
+		if (minute.toString().length == 1) {
+			minute = '0' + minute;
+		}
+		return {hour, minute, second};
+	},
+	componentDidMount: function() {
+		this.handleStopWatch();
 	},
 	handleInfoClicked: function() {
 		this.setState({flag: 'info'});
@@ -109,7 +141,7 @@ var Single = React.createClass({
 							<div id="single-right" className="col-md-3 ">
 								<div id="right-top" className="col-md-12 ">
 									<header>ĐẤU GIÁ KẾT THÚC TRONG</header>
-									<span>16:41:30</span>
+									<span>{this.state.bidtime}</span>
 								</div>
 								<div id="right-middle" className="col-md-12 ">
 									<header>LỊCH SỬ ĐẤU GIÁ</header>
