@@ -7,8 +7,6 @@ module.exports = function (input, fields, files) {
     var oneDay = 24*60*60*1000
     var date = new Date(fields.date)
     var now = new Date()
-    console.log(date)
-    console.log(now)
     var data = {
       date: fields.date,
       numDay: Math.round(Math.abs((date.getTime() - now.getTime())/(oneDay))),
@@ -20,7 +18,7 @@ module.exports = function (input, fields, files) {
       cost_min: fields.cost_min,
       cost_expected: fields.cost_expected
     }
-    console.log(data)
+
     return database.create('VERTEX', 'Product').set(data).one()
       .then(
         function (value) {
