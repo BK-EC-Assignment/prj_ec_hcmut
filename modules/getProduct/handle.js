@@ -3,16 +3,8 @@ var GError = require('./../../helper/Gerror').G_Error
 var libError = require('./../../helper/constant').error
 
 module.exports = function (input) {
-  return database.select('expand(first(in("haslogin")))').from('Login').where({
-    token: input.token,
-    active: true
-  }).one()
-    .then(function (user) {
-      if (!user) {
-        throw GError(libError.INVALID_TOKEN)
-      }
-      return database.query('select from Product where status = true order by date desc')
-    }).then(function (response) {
+  return database.query('select from Product where status = true order by date desc')
+    .then(function (response) {
       if (!response) {
         throw GError(libError.HANDLE_FAIL)
       }
@@ -26,7 +18,8 @@ module.exports = function (input) {
           picture: product.picture,
           cost_min: product.cost_min,
           cost_expected: product.cost_expected,
-          categoties: product.categoties
+          categoties: product.categoties,
+          numDay: product.numDay
         })
       })
       return {

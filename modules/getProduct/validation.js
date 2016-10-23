@@ -6,16 +6,12 @@ var libError = require('./../../helper/constant').error
 
 module.exports = function (req, res) {
   var input = {
-    'token': req.headers.token,
     'res': res,
     'returnSuccessResponse': returnSuccessResponse,
     'returnErrorResponse': returnErrorResponse
   }
-  if (!input.token) {
-    res.json(errorResponse(GError(libError.INVALID_PARAMS)))
-  } else {
-    handle(input)
-  }
+
+  handle(input)
 }
 
 function returnSuccessResponse (res, response) {

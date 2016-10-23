@@ -38,6 +38,7 @@ seneca.use('./../lib/logoutAPI')
 seneca.use('./../lib/auctionAPI')
 seneca.use('./../lib/profileAPI')
 seneca.use('./../lib/productAPI')
+seneca.use('./../lib/detailProductAPI')
 
 app.use('/', routes)
 
