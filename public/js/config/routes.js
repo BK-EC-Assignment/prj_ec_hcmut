@@ -19,7 +19,7 @@ var routes = (
       <IndexRoute component={Home} />
       <Route path='/login' header="Login" component={Login} />
       <Route path='/signup' header="SignUp" component={SignUp}/>
-      <Route path='/single' header="Single" component={Single} />
+      <Route path='/single/:id' header="Single" component={Single} />
       <Route path="/category" header = "Categories" component={Categories} />
       <Route path="/profile" header = "UserPage" component={UserPage} />
     </Route>

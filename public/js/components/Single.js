@@ -5,8 +5,15 @@ var Link = ReactRouter.Link;
 var Single = React.createClass({
 	getInitialState: function() {
 		return {
+			token: getCookie('token'),
 			flag: 'img',
 			bidtime: '16:00:10',
+			picture: '',
+			name: '',
+			description: '',
+			cost_min: '',
+			cost_expected: '',
+			date: ''
 		}
 	},
 	handleStopWatch: function() {
@@ -19,6 +26,7 @@ var Single = React.createClass({
 		setTimeout(this.handleStopWatch,1000);
 
 	},
+
 	countdownTime: function(hour, minute, second) {
 		second = second - 1;
 		if (second == -1) {
@@ -37,16 +45,68 @@ var Single = React.createClass({
 		}
 		return {hour, minute, second};
 	},
-	componentDidMount: function() {
-		this.handleStopWatch();
-	},
+
 	handleInfoClicked: function() {
 		this.setState({flag: 'info'});
 	},
+
 	handleImgClicked: function() {
 		this.setState({flag: 'img'});
 	},
+
+	componentDidMount: function () {
+		this.handleStopWatch();
+		var self = this
+		var query = this.props.location.query
+		var settings = {
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "http://localhost:7770/api/product/detail?id=" + query.id,
+		  "method": "GET",
+		  "headers": {
+				"content-type": "application/x-www-form-urlencoded",
+		    "cache-control": "no-cache"
+		  }
+		}
+
+		$.ajax(settings).done(function (response) {
+			this.setState({
+				picture: response.response.data.data.picture,
+				name: response.response.data.data.name,
+				description: response.response.data.data.discription,
+				date: response.response.data.data.date,
+				cost_min: response.response.data.data.cost_min,
+				cost_expected: response.response.data.data.cost_expected
+			});
+		}.bind(this));
+	},
+
+	submitAuction: function () {
+		var query = this.props.location.query
+		var settings = {
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "http://localhost:7770/api/users/auction",
+		  "method": "POST",
+		  "headers": {
+		    "content-type": "application/x-www-form-urlencoded",
+		    "cache-control": "no-cache",
+		    "postman-token": "531686a1-c5d3-0bb2-6b5c-c1ecf1c78e6a"
+		  },
+		  "data": {
+		    "token": getCookie('token'),
+		    "cost": this.state.cost,
+		    "productID": "#13:" + query
+		  }
+		}
+
+		$.ajax(settings).done(function (response) {
+		  console.log(response);
+		});
+	},
+
 	render: function() {
+		var self = this
 		var flag = this.state.flag;
 		var tab = '';
 		var active = {
@@ -97,21 +157,21 @@ var Single = React.createClass({
 						<div id="single-wrap" className="col-md-12">
 							<div id="single-left" className="col-md-3">
 								<figure>
-									<img src="../public/js/images/photo01.jpg"/>
+									<img src={this.state.picture} alt="#"/>
 								</figure>
 
 							</div>
 							<div id="single-main" className="col-md-6">
 								<div id="main-top" className="col-md-12">
 									<div id="single-title" className="col-md-12">
-										<label>Đèn học chống cận cho bé</label>
+										<label>{this.state.name}</label>
 									</div>
 									<div id="single-price" className="col-md-9">
-										<span>70 000 đ</span>
+										<span>{this.state.cost_min} $</span>
 									</div>
 									<div id="single-expected-price" className="col-md-3">
 										<span>Giá kỳ vọng</span><br/>
-										<span>0 đ</span>
+										<span>{this.state.cost_expected} $</span>
 									</div>
 								</div>
 								<div id="main-middle" className="col-md-12">
@@ -120,15 +180,17 @@ var Single = React.createClass({
 									</div>
 									<div id="single-step-btn" className="col-md-12">
 										<button className="btn btn-success">-</button>
-										<input className="form-control"/>
+										<input className="form-control"
+											type="text"
+											value={this.cost} />
 										<button className="btn btn-success">+</button>
-										<button id="btn-bid" className="btn btn-default">ĐẤU GIÁ</button>
+										<button id="btn-bid" className="btn btn-default" onClick={this.submitAuction}>ĐẤU GIÁ</button>
 									</div>
 								</div>
 								<div id="main-bottom" className="col-md-12">
 									<div id="single-time" className="col-md-12">
 										<span>Bắt đầu: 11/6/2016 9:30</span>
-										<span>Kết thúc: 11/6/2016 12:30 </span>
+										<span>Kết thúc: {this.state.date}</span>
 									</div>
 									<div id="single-status" className="col-md-12">
 										<span>Tình trạng: Nguyên vẹn</span>
@@ -190,4 +252,5 @@ var Single = React.createClass({
 		}
 
 	});
+
 module.exports = Single;

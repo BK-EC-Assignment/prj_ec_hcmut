@@ -1,13 +1,25 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+var PropTypes = React.PropTypes;
 
 var GridProducts = React.createClass({
+	contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
+	getDefaultProps: function () {
+    return({
+      productList: []
+    })
+  },
+
 	getInitialState: function () {
 		return {
 			productList: []
 		}
 	},
+
 	componentWillMount: function () {
 		var self = this
 		var settings = {
@@ -22,38 +34,26 @@ var GridProducts = React.createClass({
 		}
 
 		$.ajax(settings).done(function (response) {
-			self.setState({
+			this.setState({
 				productList: response.response
 			})
-		});
+		}.bind(this));
 	},
 
-	componentDidMount: function () {
-		var self = this
-		var settings = {
-		  "async": true,
-		  "crossDomain": true,
-		  "url": "http://localhost:7770/api/product",
-		  "method": "GET",
-		  "headers": {
-		    "token": getCookie('token'),
-		    "cache-control": "no-cache",
-		  }
-		}
-
-		$.ajax(settings).done(function (response) {
-			self.setState({
-				productList: response.response
-			})
-		});
+	clickHandler: function (id) {
+    this.context.router.push({
+      pathname: '/single/' + id.substring(4),
+			query: {
+				id: id.substring(4)
+			}
+    })
 	},
 
 	render: function() {
-		console.log(this.state.productList)
+		var self = this
 		var Product = this.state.productList.map(function (product, i) {
 			return (
 				<div className="col-md-2 col-sm-3 col-xs-6 grid-figure" key={i+1}>
-					<Link to="/single">
 					<figure>
 						<div className="rewardImage thumbnail_wrapper">
 							<img src={product.picture} alt="#"/>
@@ -65,8 +65,8 @@ var GridProducts = React.createClass({
 						<div className="col-md-4 padding-none">
 							<figcaption className="due">{product.numDay} ngày</figcaption>
 						</div>
+						<button type="button" className="btn btn-primary" onClick={self.clickHandler.bind(self, product.productId)}>ĐẤU GIÁ</button>
 					</figure>
-					</Link>
 				</div>
 			)
 		}
@@ -83,5 +83,7 @@ var GridProducts = React.createClass({
 			)
 	}
 });
+
+
 
 module.exports = GridProducts;

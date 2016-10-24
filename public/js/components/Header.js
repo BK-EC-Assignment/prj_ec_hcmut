@@ -140,7 +140,6 @@ var Header = React.createClass({
                   <a href="#">Đồ gia dụng</a>
                 </div>
               </div>
-
             </div>
             <div className="col-md-6 col-sm-8 col-xs-7">
               {navigation()}
