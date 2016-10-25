@@ -3,7 +3,7 @@ var GError = require('./../../helper/Gerror').G_Error
 var libError = require('./../../helper/constant').error
 
 module.exports = function (input) {
-  return database.query('select from Product where status = true order by date desc')
+  return database.query('select from Product where status = true order by date asc')
     .then(function (response) {
       if (!response) {
         throw GError(libError.HANDLE_FAIL)

@@ -77,7 +77,7 @@ var UserPage = React.createClass({
   else {
     tab = <div>
       <div className="col-md-3 padding body-avatar">
-        <img src="../public/js/images/photo01.jpg"/>
+        <img src="../public/js/images/default_user.png"/>
       </div>
       <div className="col-md-9 user-body-right padding">
         <header>

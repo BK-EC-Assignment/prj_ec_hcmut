@@ -80,6 +80,10 @@ var GridProducts = React.createClass({
 						<header className="grid-header">SẢN PHẨM MỚI</header>
 						{Product}
 					</div>
+					<div className="col-md-12 padding-none">
+						<header className="grid-header">ĐỒ ĐIỆN TỬ</header>
+						{Product}
+					</div>
 				</div>
 			</div>
 			)

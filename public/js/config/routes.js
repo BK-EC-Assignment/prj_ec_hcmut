@@ -11,7 +11,7 @@ var Single = require('../components/Single');
 var Categories = require('../components/Categories');
 var SignUp = require('../containers/HandleRegister');
 var UserPage = require('../components/UserPage');
-var EditPassword = require('../components/EditPassword');
+var EditPassword = require('../containers/HandleEditPassword');
 
 var routes = (
   <Router history={hashHistory}>
