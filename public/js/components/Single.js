@@ -108,13 +108,21 @@ var Single = React.createClass({
 		}
 
 		$.ajax(settings).done(function (response) {
-			console.log(response)
-			PNotify.removeAll();
-			new PNotify({
-				type: 'success',
-				title: 'Successful',
-				text: response.meta.message
-			})
+			if (response.meta.code === 200) {
+				PNotify.removeAll();
+				new PNotify({
+					type: 'success',
+					title: 'Successful',
+					text: response.meta.message
+				})
+			} else {
+				PNotify.removeAll();
+				new PNotify({
+					type: 'error',
+					title: 'Auction Field',
+					text: response.meta.message
+				})
+			}
 		});
 	},
 
