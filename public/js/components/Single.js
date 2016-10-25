@@ -13,7 +13,8 @@ var Single = React.createClass({
 			description: '',
 			cost_min: '',
 			cost_expected: '',
-			date: ''
+			date: '',
+			cost: ''
 		}
 	},
 	handleStopWatch: function() {
@@ -81,6 +82,12 @@ var Single = React.createClass({
 		}.bind(this));
 	},
 
+	HandleCost: function (e) {
+		this.setState({
+			cost: e.target.value
+		})
+	},
+
 	submitAuction: function () {
 		var query = this.props.location.query
 		var settings = {
@@ -89,19 +96,25 @@ var Single = React.createClass({
 		  "url": "http://localhost:7770/api/users/auction",
 		  "method": "POST",
 		  "headers": {
-		    "content-type": "application/x-www-form-urlencoded",
+		    "token": getCookie('token'),
 		    "cache-control": "no-cache",
-		    "postman-token": "531686a1-c5d3-0bb2-6b5c-c1ecf1c78e6a"
+		    "postman-token": "efbb09cc-2283-391f-6ca0-af7849a0dcaa",
+		    "content-type": "application/x-www-form-urlencoded"
 		  },
 		  "data": {
-		    "token": getCookie('token'),
 		    "cost": this.state.cost,
-		    "productID": "#13:" + query
+		    "productID": "#13:" + query.id
 		  }
 		}
 
 		$.ajax(settings).done(function (response) {
-		  console.log(response);
+			console.log(response)
+			PNotify.removeAll();
+			new PNotify({
+				type: 'success',
+				title: 'Successful',
+				text: response.meta.message
+			})
 		});
 	},
 
@@ -182,7 +195,7 @@ var Single = React.createClass({
 										<button className="btn btn-success">-</button>
 										<input className="form-control"
 											type="text"
-											value={this.cost} />
+											onChange={this.HandleCost} />
 										<button className="btn btn-success">+</button>
 										<button id="btn-bid" className="btn btn-default" onClick={this.submitAuction}>ĐẤU GIÁ</button>
 									</div>
