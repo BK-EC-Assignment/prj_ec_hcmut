@@ -59,13 +59,15 @@ var GridProducts = React.createClass({
 							<img src={product.picture} alt="#"/>
 						</div>
 						<figcaption className="title">{product.name}</figcaption>
-						<div className="col-md-8 padding-none">
+						<div className="col-md-8 col-sm-8 col-xs-8 padding-none">
 							<figcaption className="price">{product.cost_min}</figcaption>
 						</div>
-						<div className="col-md-4 padding-none">
+						<div className="col-md-4 col-md-4 col-xs-4 padding-none">
 							<figcaption className="due">{product.numDay} ngày</figcaption>
 						</div>
-						<button type="button" className="btn btn-primary" onClick={self.clickHandler.bind(self, product.productId)}>ĐẤU GIÁ</button>
+						<div className="col-md-12 col-sm-12 col-xs-12 padding-none">
+							<button type="button" className="btn btn-primary" onClick={self.clickHandler.bind(self, product.productId)}>ĐẤU GIÁ</button>
+						</div>
 					</figure>
 				</div>
 			)

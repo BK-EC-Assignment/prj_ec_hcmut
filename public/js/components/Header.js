@@ -63,6 +63,7 @@ var Header = React.createClass({
             <span id="account-name">Clark John</span>
               <ul className="account-dropdown">
                 <li><Link to="/profile" className="account-profile">Thông tin cá nhân</Link></li>
+                <li><Link to="/editpassword" className="account-profile">Chỉnh sửa mật khẩu</Link></li>
                 <li><button type="button" onClick={self.handleLogout} id="logout-button" >Đăng xuất</button></li>
               </ul>
           </div>
@@ -96,11 +97,6 @@ var Header = React.createClass({
           <li>
             <Link to="/single">
               <button className="dropbtn">Đang đấu giá</button>
-            </Link>
-          </li>
-          <li>
-            <Link to="/profile">
-              <button className="dropbtn">Trang cá nhân</button>
             </Link>
           </li>
         </ul>

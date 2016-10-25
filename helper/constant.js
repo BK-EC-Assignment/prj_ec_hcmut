@@ -42,7 +42,15 @@ var ERROR = {
   HANDLE_FAIL: {
     code: 500,
     message: 'Some thing wrong, please try late!'
-  }
+  },
+  INVALID_PASSWORD: {
+    code: 404,
+    message: 'Your current password is not correct!'
+  },
+  MISSING_NEW_PASS: {
+    code: 404,
+    message: 'Your new password is not identical!'
+  },
 }
 
 var SUCCESS = {
