@@ -21,6 +21,7 @@ function insertData (input, value) {
     var data = {
       username: input.username,
       email: input.email,
+      phone: input.phone,
       salt: newSalt,
       password: crypto.createHmac('sha256', newSalt).update(input.password).digest('hex'),
       token: encode(input.email, newSalt),

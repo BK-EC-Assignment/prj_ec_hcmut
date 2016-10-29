@@ -33,10 +33,6 @@ var HandleEditPassword = React.createClass({
   handleSubmitUser: function (e) {
     e.preventDefault();
     var token = getCookie('token')
-    console.log("Token: " + token)
-    console.log("Old: " + this.state.oldpassword)
-    console.log("New: " + this.state.password)
-    console.log("Confirm: " + this.state.confirm)
     var settings = {
       "async": true,
       "crossDomain": true,

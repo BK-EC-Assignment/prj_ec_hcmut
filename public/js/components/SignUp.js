@@ -54,6 +54,15 @@ function SignUp (props) {
                    value={props.address}
                    />
           </div>
+
+          <div className="form-group">
+            <label className="labelLogin">Số điện thoại</label>
+            <input type="text"
+                   className="form-control inputlogin"
+                   placeholder="Số điện thoại"
+                   onChange={props.onPhone}
+                   value={props.phone} />
+          </div>
           <button type="submit" className="btn btn-sm btn-default">Hoàn tất</button>
         </form>
       </div>
@@ -69,11 +78,13 @@ SignUp.PropTypes = {
   onConfirmPass: PropTypes.func.isRequired,
   onPassWord: PropTypes.func.isRequired,
   onAddress: PropTypes.func.isRequired,
+  onPhone: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   confirmPass: PropTypes.string.isRequired,
-  address: PropTypes.string.address
+  address: PropTypes.string.address,
+  phone: PropTypes.string.phone
 }
 
 

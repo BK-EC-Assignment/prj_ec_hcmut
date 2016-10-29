@@ -11,7 +11,8 @@ var HandleRegister = React.createClass({
       username: '',
       email: '',
       password: '',
-      address: ''
+      address: '',
+      phone: ''
     })
   },
 
@@ -45,37 +46,42 @@ var HandleRegister = React.createClass({
     })
   },
 
+  phone: function (e) {
+    this.setState({
+      phone: e.target.value
+    })
+  },
+
   handleSubmitUser: function (e) {
-    if (this.state.email === null || this.state.username === null || this.state.password === null || this.state.address === null) {
+    if (this.state.password != this.state.confirmPass) {
       PNotify.removeAll();
       new PNotify({
         type: 'error',
-        title: 'Error',
-        text: 'Please fill out both textboxes!'
+        title: 'Error!',
+        text: 'Password not match'
       })
     } else {
-      axios.post('/api/users/register', {username: this.state.username, email: this.state.email, password: this.state.password, address: this.state.address})
-        .then(function (res) {
-          if (res.data.meta.success === 1) {
-            PNotify.removeAll();
-            new PNotify({
-              type: 'success',
-              title: 'Successful',
-              text: res.data.meta.message
-            })
-
-            this.context.router.push({
-              pathname: '/login',
-            })
-          } else {
-            PNotify.removeAll();
-            new PNotify({
-              type: 'error',
-              title: 'Error!',
-              text: res.data.meta.message
-            })
-          }
-        }.bind(this))
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:7770/api/users/register",
+        "method": "POST",
+        "headers": {
+          "cache-control": "no-cache",
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "data": {
+          "username": this.state.username,
+          "email": this.state.email,
+          "password": this.state.password,
+          "address": this.state.address,
+          "phone": this.state.phone
+        }
+      }
+      console.log(settings.data)
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      });
     }
   },
 
@@ -87,7 +93,8 @@ var HandleRegister = React.createClass({
         onUpdateUser={this.handleEmail}
         onPassWord={this.handlePass}
         onConfirmPass={this.confirmPass}
-        onAddress={this.address} />
+        onAddress={this.address}
+        onPhone={this.phone} />
     );
   }
 });
