@@ -40,7 +40,6 @@ var HandleEditPassword = React.createClass({
       "method": "PUT",
       "headers": {
         "cache-control": "no-cache",
-        "postman-token": "90f48eba-4b40-0cd0-e557-eafe971f934b",
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
@@ -51,7 +50,6 @@ var HandleEditPassword = React.createClass({
     }
 
     $.ajax(settings).done(function (response) {
-      console.log(response);
       if (response.meta.code === 200) {
         PNotify.removeAll();
           new PNotify({

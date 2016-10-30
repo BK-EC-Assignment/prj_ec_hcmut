@@ -60,6 +60,10 @@ var HandleRegister = React.createClass({
         title: 'Error!',
         text: 'Password not match'
       })
+
+      this.context.router.push({
+        pathname: '/signup',
+      })
     } else {
       var settings = {
         "async": true,
@@ -78,9 +82,27 @@ var HandleRegister = React.createClass({
           "phone": this.state.phone
         }
       }
-      console.log(settings.data)
       $.ajax(settings).done(function (response) {
-        console.log(response);
+        if (response.meta.code === 200) {
+          PNotify.removeAll();
+          new PNotify({
+            type: 'success',
+            title: 'Successful',
+            text: response.meta.message
+          })
+
+          this.context.router.push({
+            pathname: '/login',
+          })
+        } else {
+          PNotify.removeAll();
+          new PNotify({
+            type: 'error',
+            title: 'Error!',
+            text: response.meta.message
+          })
+        }
+
       });
     }
   },
