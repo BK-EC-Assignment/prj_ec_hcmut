@@ -31,6 +31,7 @@ function insertData (input, value) {
     }
     return database.create('VERTEX', 'Users').set(data).one()
       .then(function (value) {
+        console.log(value)
         if (value) {
           return input.onSuccess(input.done ,value)
         } else {

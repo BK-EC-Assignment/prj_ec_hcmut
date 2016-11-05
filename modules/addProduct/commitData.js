@@ -6,10 +6,8 @@ module.exports = function (input, fields, files) {
     var path = files.picture.path
     var oneDay = 24*60*60*1000
     var date = new Date(fields.date)
-    var now = new Date()
     var data = {
       date: fields.date,
-      numDay: Math.round(Math.abs((date.getTime() - now.getTime())/(oneDay))),
       description: (fields.description) ? fields.description : '',
       status: true,
       name: fields.name,
