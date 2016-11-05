@@ -63,7 +63,7 @@ var GridProducts = React.createClass({
 							<figcaption className="price">{product.cost_min}</figcaption>
 						</div>
 						<div className="col-md-4 col-md-4 col-xs-4 padding-none">
-							<figcaption className="due">{product.numDay} ngày</figcaption>
+							<figcaption className="due">{product.deadline} ngày</figcaption>
 						</div>
 						<div className="col-md-12 col-sm-12 col-xs-12 padding-none">
 							<button type="button" className="btn btn-primary" onClick={self.clickHandler.bind(self, product.productId)}>ĐẤU GIÁ</button>

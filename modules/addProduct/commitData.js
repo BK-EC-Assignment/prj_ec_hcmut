@@ -2,12 +2,11 @@ var database = require('../../models/index.js').database
 var fs = require('fs')
 
 module.exports = function (input, fields, files) {
-  if ((fields.name) && (files.picture) && (fields.description) && (fields.date)) {
+  if ((fields.name) && (files.picture) && (fields.description) && (fields.deadline)) {
     var path = files.picture.path
-    var oneDay = 24*60*60*1000
-    var date = new Date(fields.date)
+    var date = new Date(fields.deadline).getTime() / 1000
     var data = {
-      date: fields.date,
+      deadline: date,
       description: (fields.description) ? fields.description : '',
       status: true,
       name: fields.name,
