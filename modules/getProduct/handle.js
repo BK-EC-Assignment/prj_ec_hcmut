@@ -11,23 +11,12 @@ module.exports = function (input) {
 
       var products = []
       var now = Date.now()
-      var date = new Date(now)
-      var year = date.getFullYear()
-      var month = date.getMonth()
-      var day = date.getDate()
-      var hours = date.getHours()
-      var minutes = date.getMinutes()
-      var second = date.getSeconds()
       response.forEach(function (product) {
         var deadline = new Date(product.deadline*1000)
-        var y = deadline.getFullYear()
-        var m = deadline.getMonth()
-        var d = deadline.getDate()
-        var h = deadline.getHours()
-        var mi = deadline.getMinutes()
-        var s = deadline.getSeconds()
-        var dayNow = Math.round(Math.abs((y-year))) + '-' + Math.round(Math.abs((month-m))) + '-' + Math.round(Math.abs((d-day))) + ' ' + Math.round(Math.abs((h-hours))) + ':'  + Math.round(Math.abs((mi-minutes))) + ':' + Math.round(Math.abs((s-second)))
-        console.log(dayNow)
+        var diff = new Date()
+        diff.setTime(deadline - now)
+        var timeline = diff.getDate() + ' ngày ' + diff.getHours() + ':' + diff.getMinutes() + ':' + diff.getSeconds()
+        console.log(timeline)
         products.push({
           productId: product['@rid'],
           name: product.name,
@@ -36,7 +25,7 @@ module.exports = function (input) {
           cost_min: product.cost_min,
           cost_expected: product.cost_expected,
           categoties: product.categoties,
-          deadline: dayNow
+          deadline: timeline
         })
       })
       return {
