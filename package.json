@@ -49,6 +49,8 @@
     "randomstring": "^1.1.5",
     "react": "^15.2.1",
     "react-bootstrap": "^0.29.5",
+    "react-count-down": "^1.0.3",
+    "react-countdown-clock": "^1.0.9",
     "react-dom": "^15.2.1",
     "react-file-input": "^0.2.5",
     "react-router": "^2.8.1",

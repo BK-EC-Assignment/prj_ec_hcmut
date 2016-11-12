@@ -15,8 +15,8 @@ module.exports = function (input) {
         var deadline = new Date(product.deadline*1000)
         var diff = new Date()
         diff.setTime(deadline - now)
-        var timeline = diff.getDate() + ' ngày ' + diff.getHours() + ':' + diff.getMinutes() + ':' + diff.getSeconds()
-        console.log(timeline)
+        var hours = diff.getDate() * 24 + diff.getHours()
+        var timeline = hours + ':' + diff.getMinutes() + ':' + diff.getSeconds()
         products.push({
           productId: product['@rid'],
           name: product.name,
@@ -25,7 +25,8 @@ module.exports = function (input) {
           cost_min: product.cost_min,
           cost_expected: product.cost_expected,
           categoties: product.categoties,
-          deadline: timeline
+          timeline: timeline,
+          deadline: product.deadline
         })
       })
       return {
