@@ -54,6 +54,7 @@ var GridProducts = React.createClass({
 		var self = this
 		var Product = this.state.productList.map(function (product, i) {
 			if (product.timeline > 0) {
+				console.log(i)
 				var end = new Date(product.deadline*1000);
 		    var _second = 1000;
 		    var _minute = _second * 60;
@@ -64,10 +65,11 @@ var GridProducts = React.createClass({
 		    function showRemaining() {
 		        var now = new Date();
 		        var distance = end - now;
+						var countdown = document.getElementsByClassName("countdown")
 		        if (distance < 0) {
 
 		            clearInterval(timer);
-		            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+		            countdown[i].innerHTML = ' ';
 								document.getElementById('btn-auction').innerHTML = 'EXPIRED!';
 								setTimeout(function() {
 									document.getElementById("product").style.display = 'none';
@@ -79,21 +81,21 @@ var GridProducts = React.createClass({
 		        var minutes = Math.floor((distance % _hour) / _minute);
 		        var seconds = Math.floor((distance % _minute) / _second);
 
-						if (document.getElementById('countdown').innerHTML = days != '0') {
-							document.getElementById('countdown').innerHTML = days + 'day ';
-							document.getElementById('countdown').innerHTML += hours + ':';
-			        document.getElementById('countdown').innerHTML += minutes + ':';
-			        document.getElementById('countdown').innerHTML += seconds;
+						if (days != '0') {
+							countdown[i].innerHTML = days + 'ngày ';
+							countdown[i].innerHTML += hours + ':';
+			        countdown[i].innerHTML += minutes + ':';
+			        countdown[i].innerHTML += seconds;
 						} else {
-							document.getElementById('countdown').innerHTML = hours + ':';
-			        document.getElementById('countdown').innerHTML += minutes + ':';
-			        document.getElementById('countdown').innerHTML += seconds;
+							countdown[i].innerHTML = hours + ':';
+			        countdown[i].innerHTML += minutes + ':';
+			        countdown[i].innerHTML += seconds;
 						}
 		    }
 
 		    timer = setInterval(showRemaining, 1000);
 				return (
-					<div id="product" className="col-md-2 col-sm-3 col-xs-6 grid-figure" key={i+1}>
+					<div id="product" className="col-md-3 col-sm-3 col-xs-6 grid-figure" key={i+1}>
 						<figure>
 							<div className="rewardImage thumbnail_wrapper">
 								<img src={product.picture} alt="#"/>
@@ -103,7 +105,7 @@ var GridProducts = React.createClass({
 								<figcaption className="price">{product.cost_min}</figcaption>
 							</div>
 							<div className="col-md-7 col-sm-7 col-xs-7 padding-none">
-								<div id="countdown"></div>
+								<div className="countdown"></div>
 							</div>
 							<div className="col-md-12 col-sm-12 col-xs-12 padding-none" id="btn-auction">
 								<button type="button" className="btn btn-primary" onClick={self.clickHandler.bind(self, product.productId)}>ĐẤU GIÁ</button>
@@ -119,12 +121,6 @@ var GridProducts = React.createClass({
 				<div className="row">
 					<div className="col-md-12 padding-none">
 						<header className="grid-header">SẢN PHẨM MỚI</header>
-						{Product}
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-12 padding-none">
-						<header className="grid-header">ĐỒ ĐIỆN TỬ</header>
 						{Product}
 					</div>
 				</div>
