@@ -14,9 +14,8 @@ module.exports = function (input) {
       response.forEach(function (product) {
         var deadline = new Date(product.deadline*1000)
         var diff = new Date()
-        diff.setTime(deadline - now)
-        var hours = diff.getDate() * 24 + diff.getHours()
-        var timeline = hours + ':' + diff.getMinutes() + ':' + diff.getSeconds()
+        var timeline = diff.setTime(deadline - now)
+
         products.push({
           productId: product['@rid'],
           name: product.name,
