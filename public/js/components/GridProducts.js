@@ -53,8 +53,6 @@ var GridProducts = React.createClass({
 	render: function() {
 		var self = this
 		var Product = this.state.productList.map(function (product, i) {
-			if (product.timeline > 0) {
-				console.log(i)
 				var end = new Date(product.deadline*1000);
 		    var _second = 1000;
 		    var _minute = _second * 60;
@@ -66,14 +64,15 @@ var GridProducts = React.createClass({
 		        var now = new Date();
 		        var distance = end - now;
 						var countdown = document.getElementsByClassName("countdown")
+						var btn_auction = document.getElementsByClassName("btn-auction")
+						var productClassName = document.getElementsByClassName("product")
 		        if (distance < 0) {
-
 		            clearInterval(timer);
-		            countdown[i].innerHTML = ' ';
-								document.getElementById('btn-auction').innerHTML = 'EXPIRED!';
+								btn_auction[i].innerHTML = 'EXPIRED!';
 								setTimeout(function() {
-									document.getElementById("product").style.display = 'none';
+									productClassName[i].style.display = 'none';
 								}, 3000);
+								countdown[i].innerHTML = ' ';
 		            return;
 		        }
 		        var days = Math.floor(distance / _day);
@@ -81,8 +80,8 @@ var GridProducts = React.createClass({
 		        var minutes = Math.floor((distance % _hour) / _minute);
 		        var seconds = Math.floor((distance % _minute) / _second);
 
-						if (days != '0') {
-							countdown[i].innerHTML = days + 'ngày ';
+						if (days != 0) {
+							countdown[i].innerHTML = days + ' ngày ';
 							countdown[i].innerHTML += hours + ':';
 			        countdown[i].innerHTML += minutes + ':';
 			        countdown[i].innerHTML += seconds;
@@ -95,7 +94,7 @@ var GridProducts = React.createClass({
 
 		    timer = setInterval(showRemaining, 1000);
 				return (
-					<div id="product" className="col-md-3 col-sm-3 col-xs-6 grid-figure" key={i+1}>
+					<div className="col-md-3 col-sm-3 col-xs-6 grid-figure product" key={i+1}>
 						<figure>
 							<div className="rewardImage thumbnail_wrapper">
 								<img src={product.picture} alt="#"/>
@@ -107,13 +106,12 @@ var GridProducts = React.createClass({
 							<div className="col-md-7 col-sm-7 col-xs-7 padding-none">
 								<div className="countdown"></div>
 							</div>
-							<div className="col-md-12 col-sm-12 col-xs-12 padding-none" id="btn-auction">
+							<div className="col-md-12 col-sm-12 col-xs-12 padding-none btn-auction">
 								<button type="button" className="btn btn-primary" onClick={self.clickHandler.bind(self, product.productId)}>ĐẤU GIÁ</button>
 							</div>
 						</figure>
 					</div>
 				)
-			}
 		}
 	)
 		return (

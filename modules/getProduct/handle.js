@@ -15,18 +15,19 @@ module.exports = function (input) {
         var deadline = new Date(product.deadline*1000)
         var diff = new Date()
         var timeline = diff.setTime(deadline - now)
-
-        products.push({
-          productId: product['@rid'],
-          name: product.name,
-          description: product.description,
-          picture: product.picture,
-          cost_min: product.cost_min,
-          cost_expected: product.cost_expected,
-          categoties: product.categoties,
-          timeline: timeline,
-          deadline: product.deadline
-        })
+        if (timeline > 0) {
+          products.push({
+            productId: product['@rid'],
+            name: product.name,
+            description: product.description,
+            picture: product.picture,
+            cost_min: product.cost_min,
+            cost_expected: product.cost_expected,
+            categoties: product.categoties,
+            timeline: timeline,
+            deadline: product.deadline
+          })
+        }
       })
       return {
         response: products

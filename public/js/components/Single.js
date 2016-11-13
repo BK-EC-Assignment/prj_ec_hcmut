@@ -14,7 +14,9 @@ var Single = React.createClass({
 			cost_min: '',
 			cost_expected: '',
 			date: '',
-			cost: ''
+			cost: '',
+			deadline: '',
+			timeline: ''
 		}
 	},
 	handleStopWatch: function() {
@@ -77,7 +79,9 @@ var Single = React.createClass({
 				description: response.response.data.data.discription,
 				date: response.response.data.data.date,
 				cost_min: response.response.data.data.cost_min,
-				cost_expected: response.response.data.data.cost_expected
+				cost_expected: response.response.data.data.cost_expected,
+				deadline: response.response.data.data.deadline,
+				timeline: response.response.data.data.timeline
 			});
 		}.bind(this));
 	},
@@ -136,6 +140,38 @@ var Single = React.createClass({
 		var unactive = {
 			borderBottom: 'none',
 		}
+		console.log(this.state.deadline)
+		var end = new Date(this.state.deadline*1000);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML = days + 'days ';
+        document.getElementById('countdown').innerHTML += hours + 'hrs ';
+        document.getElementById('countdown').innerHTML += minutes + 'mins ';
+        document.getElementById('countdown').innerHTML += seconds + 'secs';
+    }
+
+    timer = setInterval(showRemaining, 1000);
+
 		if (flag === 'info') {
 			tab = (<div> <div>
 				<label>Thông tin chung</label>
@@ -224,7 +260,7 @@ var Single = React.createClass({
 							<div id="single-right" className="col-md-3 ">
 								<div id="right-top" className="col-md-12 ">
 									<header>ĐẤU GIÁ KẾT THÚC TRONG</header>
-									<span>{this.state.bidtime}</span>
+									<span><div id="countdown"></div></span>
 								</div>
 								<div id="right-middle" className="col-md-12 ">
 									<header>LỊCH SỬ ĐẤU GIÁ</header>
