@@ -19,8 +19,7 @@ module.exports = function (input) {
         cost_min: detail.cost_min,
         cost_expected: detail.cost_expected,
         categories: detail.categories,
-        numDay: detail.numDay,
-        date: detail.date
+        deadline: detail.deadline
       }
       return {
         data: data

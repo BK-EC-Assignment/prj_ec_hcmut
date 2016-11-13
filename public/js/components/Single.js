@@ -77,11 +77,9 @@ var Single = React.createClass({
 				picture: response.response.data.data.picture,
 				name: response.response.data.data.name,
 				description: response.response.data.data.discription,
-				date: response.response.data.data.date,
-				cost_min: response.response.data.data.cost_min,
-				cost_expected: response.response.data.data.cost_expected,
 				deadline: response.response.data.data.deadline,
-				timeline: response.response.data.data.timeline
+				cost_min: response.response.data.data.cost_min,
+				cost_expected: response.response.data.data.cost_expected
 			});
 		}.bind(this));
 	},
@@ -140,37 +138,6 @@ var Single = React.createClass({
 		var unactive = {
 			borderBottom: 'none',
 		}
-		console.log(this.state.deadline)
-		var end = new Date(this.state.deadline*1000);
-
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer;
-
-    function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
-
-            clearInterval(timer);
-            document.getElementById('countdown').innerHTML = 'EXPIRED!';
-
-            return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-
-        document.getElementById('countdown').innerHTML = days + 'days ';
-        document.getElementById('countdown').innerHTML += hours + 'hrs ';
-        document.getElementById('countdown').innerHTML += minutes + 'mins ';
-        document.getElementById('countdown').innerHTML += seconds + 'secs';
-    }
-
-    timer = setInterval(showRemaining, 1000);
 
 		if (flag === 'info') {
 			tab = (<div> <div>
@@ -201,7 +168,44 @@ var Single = React.createClass({
 						</figure>
 				</div>);
 			}
+			/////// Handle CountDown Clock /////////
+			var end = new Date(this.state.deadline*1000);
+	    var _second = 1000;
+	    var _minute = _second * 60;
+	    var _hour = _minute * 60;
+	    var _day = _hour * 24;
+	    var timer;
+
+	    function showRemaining() {
+	        var now = new Date();
+	        var distance = end - now;
+	        if (distance < 0) {
+
+	            clearInterval(timer);
+	            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+							document.getElementById('btn-bid').style.display = 'none';
+	            return;
+	        }
+	        var days = Math.floor(distance / _day);
+	        var hours = Math.floor((distance % _day) / _hour);
+	        var minutes = Math.floor((distance % _hour) / _minute);
+	        var seconds = Math.floor((distance % _minute) / _second);
+
+					if (days != 0) {
+						document.getElementById('countdown').innerHTML = days + ' ngày ';
+						document.getElementById('countdown').innerHTML += hours + ':';
+						document.getElementById('countdown').innerHTML += minutes + ':';
+						document.getElementById('countdown').innerHTML += seconds;
+					} else {
+						document.getElementById('countdown').innerHTML = hours + ':';
+						document.getElementById('countdown').innerHTML += minutes + ':';
+						document.getElementById('countdown').innerHTML += seconds;
+					}
+	    }
+
+	    timer = setInterval(showRemaining, 1000);
 		return (
+
 				<div id ="single" className="container">
 					<div className="row">
 						<div className="col-md-12 col-sm-12 col-xs-12 padding">
@@ -247,7 +251,7 @@ var Single = React.createClass({
 								<div id="main-bottom" className="col-md-12">
 									<div id="single-time" className="col-md-12">
 										<span>Bắt đầu: 11/6/2016 9:30</span>
-										<span>Kết thúc: {this.state.date}</span>
+										<span>Kết thúc: </span>
 									</div>
 									<div id="single-status" className="col-md-12">
 										<span>Tình trạng: Nguyên vẹn</span>
