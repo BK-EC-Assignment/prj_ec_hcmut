@@ -16,7 +16,8 @@ var Single = React.createClass({
 			date: '',
 			cost: '',
 			deadline: '',
-			timeline: ''
+			timeline: '',
+			listUserAuction: []
 		}
 	},
 	handleStopWatch: function() {
@@ -88,6 +89,26 @@ var Single = React.createClass({
 		this.setState({
 			cost: e.target.value
 		})
+	},
+
+	componentWillMount: function () {
+		var id = "#13:" + this.props.location.query.id
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:7770/api/users/getAuction",
+      "method": "GET",
+      "headers": {
+        "id": id,
+        "cache-control": "no-cache"
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
+      this.setState({
+				listUserAuction: response.response
+			})
+    }.bind(this));
 	},
 
 	submitAuction: function () {
@@ -218,6 +239,15 @@ var Single = React.createClass({
 	    timer = setInterval(showRemaining, 1000);
 
 			//////////////////////////////////////////////////////////////////////////
+		var ListUser = this.state.listUserAuction.map(function (listUser, i) {
+			return (
+				<li key={i+1}>
+					<span className="username">{listUser.username}</span>
+					<span className="bidding-time">{listUser.time}</span>
+				</li>
+				)
+			}
+		);
 		return (
 
 				<div id ="single" className="container">
@@ -283,26 +313,7 @@ var Single = React.createClass({
 								<div id="right-middle" className="col-md-12 ">
 									<header>LỊCH SỬ ĐẤU GIÁ</header>
 									<ul>
-										<li>
-											<span className="username">Phạm Trần Trí</span>
-											<span className="bidding-time">11/6/2016 12:12</span>
-										</li>
-										<li>
-											<span className="username">Lương Quốc Dinh</span>
-											<span className="bidding-time">11/6/2016 12:11</span>
-										</li>
-										<li>
-											<span className="username">Lương Quốc Dinh</span>
-											<span className="bidding-time">11/6/2016 12:09</span>
-										</li>
-										<li>
-											<span className="username">Lương Quốc Dinh</span>
-											<span className="bidding-time">11/6/2016 12:08</span>
-										</li>
-										<li>
-											<span className="username">Lương Quốc Dinh</span>
-											<span className="bidding-time">11/6/2016 12:03</span>
-										</li>
+										{ListUser}
 									</ul>
 									<div className="col-md-12">
 										<span><a href="#">Xem tất cả</a></span>

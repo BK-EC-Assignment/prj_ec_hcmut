@@ -3,7 +3,7 @@ var GError = require('./../../helper/Gerror').G_Error
 var libError = require('./../../helper/constant').error
 
 module.exports = function (input) {
-  var sql = "select out.username as name, time from Auction where in = " + input.id;
+  var sql = "select out.username as username, time from Auction where in = " + input.id;
   return database
           .query(sql)
           .then(function (list) {
@@ -13,9 +13,11 @@ module.exports = function (input) {
 
             var listAuction = []
             list.forEach(function (auction) {
-              var time = new Date(auction.time*1000)
+              var timeAuction = new Date(auction.time*1000)
+              var time = timeAuction.getDate() + '/' + (timeAuction.getMonth()+1) + '/' + timeAuction.getFullYear() +
+                          ' ' + timeAuction.getHours() + ':' + timeAuction.getMinutes() + ':' + timeAuction.getSeconds()
               listAuction.push({
-                name: auction.name,
+                username: auction.username,
                 time: time
               })
             })
