@@ -40,6 +40,8 @@ seneca.use('./../lib/auctionAPI')
 seneca.use('./../lib/profileAPI')
 seneca.use('./../lib/productAPI')
 seneca.use('./../lib/detailProductAPI')
+seneca.use('./../lib/getAuctionProductAPI')
+
 
 app.use('/', routes)
 

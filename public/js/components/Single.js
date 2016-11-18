@@ -92,40 +92,52 @@ var Single = React.createClass({
 
 	submitAuction: function () {
 		var query = this.props.location.query
-		var settings = {
-		  "async": true,
-		  "crossDomain": true,
-		  "url": "http://localhost:7770/api/users/auction",
-		  "method": "POST",
-		  "headers": {
-		    "token": getCookie('token'),
-		    "cache-control": "no-cache",
-		    "postman-token": "efbb09cc-2283-391f-6ca0-af7849a0dcaa",
-		    "content-type": "application/x-www-form-urlencoded"
-		  },
-		  "data": {
-		    "cost": this.state.cost,
-		    "productID": "#13:" + query.id
-		  }
+		if (getCookie('token') === null) {
+			PNotify.removeAll();
+			console.log('warning')
+			new PNotify({
+				type: 'warning',
+				title: 'Auction Field',
+				text: 'Please Login System'
+			})
+		} else {
+			var settings = {
+			  "async": true,
+			  "crossDomain": true,
+			  "url": "http://localhost:7770/api/users/auction",
+			  "method": "POST",
+			  "headers": {
+			    "token": getCookie('token'),
+			    "cache-control": "no-cache",
+			    "content-type": "application/x-www-form-urlencoded"
+			  },
+			  "data": {
+			    "cost": this.state.cost,
+			    "productID": "#13:" + query.id
+			  }
+			}
+
+			$.ajax(settings).done(function (response) {
+				if (response.meta.code === 200) {
+					console.log('success')
+					PNotify.removeAll();
+					new PNotify({
+						type: 'success',
+						title: 'Successful',
+						text: response.meta.message
+					})
+				} else {
+					PNotify.removeAll();
+					console.log('error')
+					new PNotify({
+						type: 'error',
+						title: 'Auction Field',
+						text: response.meta.message
+					})
+				}
+			});
 		}
 
-		$.ajax(settings).done(function (response) {
-			if (response.meta.code === 200) {
-				PNotify.removeAll();
-				new PNotify({
-					type: 'success',
-					title: 'Successful',
-					text: response.meta.message
-				})
-			} else {
-				PNotify.removeAll();
-				new PNotify({
-					type: 'error',
-					title: 'Auction Field',
-					text: response.meta.message
-				})
-			}
-		});
 	},
 
 	render: function() {
@@ -183,7 +195,7 @@ var Single = React.createClass({
 
 	            clearInterval(timer);
 	            document.getElementById('countdown').innerHTML = 'EXPIRED!';
-							document.getElementById('btn-bid').style.display = 'none';
+							// document.getElementById('btn-bid').style.display = 'none';
 	            return;
 	        }
 	        var days = Math.floor(distance / _day);
@@ -204,6 +216,8 @@ var Single = React.createClass({
 	    }
 
 	    timer = setInterval(showRemaining, 1000);
+
+			//////////////////////////////////////////////////////////////////////////
 		return (
 
 				<div id ="single" className="container">
