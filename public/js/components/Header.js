@@ -47,6 +47,15 @@ var Header = React.createClass({
     }
   },
 
+  clickHandler: function (category) {
+    this.context.router.push({
+      pathname: '/category/' + category,
+			query: {
+				category: category
+			}
+    })
+  },
+
   render: function () {
     var self = this
     var token = getCookie('token')
@@ -131,9 +140,9 @@ var Header = React.createClass({
               <div className="dropdown">
                 <button className="dropbtn">Danh mục <i className="glyphicon glyphicon-triangle-bottom"></i></button>
                 <div className="dropdown-content">
-                  <Link to="/category">Giải trí, Thể thao, Sở thích</Link>
-                  <a href="#">Đồ điện tử</a>
-                  <a href="#">Đồ gia dụng</a>
+                  <a onClick={self.clickHandler.bind(self, 'giai-tri')}>Giải trí, Thể thao, Sở thích</a>
+                  <a onClick={self.clickHandler.bind(self, 'do-dien-tu')}>Đồ điện tử</a>
+                  <a onClick={self.clickHandler.bind(self, 'do-gia-dung')}>Đồ gia dụng</a>
                 </div>
               </div>
             </div>
