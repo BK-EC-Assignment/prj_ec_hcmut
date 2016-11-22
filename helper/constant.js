@@ -51,6 +51,10 @@ var ERROR = {
     code: 404,
     message: 'Your new password is not identical!'
   },
+  MISSING_PRODUCT: {
+    code: 404,
+    message: 'Product is not exist'
+  }
 }
 
 var SUCCESS = {

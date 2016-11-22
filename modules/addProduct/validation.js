@@ -5,7 +5,6 @@ var successResponse = require('../../helper/parseSuccessResponse')
 var handle = require('./handle')
 var libError = require('../../helper/constant').error
 var GError = require('../../helper/Gerror').G_Error
-var database = require('../../models/index.js').database
 
 module.exports = function (req, res) {
   var input = {
