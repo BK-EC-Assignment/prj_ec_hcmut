@@ -93,6 +93,11 @@ var Header = React.createClass({
               <button className="dropbtn">Đang đấu giá</button>
             </Link>
           </li>
+          <li>
+            <Link to="/admin">
+              <button className="dropbtn">Trang quản trị</button>
+            </Link>
+          </li>
         </ul>
       )
       else return (
