@@ -103,8 +103,11 @@ var GridProducts = React.createClass({
 							<div className="col-md-5 col-sm-5 col-xs-5 padding-none">
 								<figcaption className="price">{product.cost_min}</figcaption>
 							</div>
-							<div className="col-md-7 col-sm-7 col-xs-7 padding-none">
-								<div className="countdown"></div>
+
+							<div className="countdown-container col-md-7 col-sm-7 col-xs-7 padding-none">
+								<div className="countdown">
+
+								</div>
 							</div>
 							<div className="col-md-12 col-sm-12 col-xs-12 padding-none btn-auction">
 								<button type="button" className="btn btn-primary" onClick={self.clickHandler.bind(self, product.productId)}>ĐẤU GIÁ</button>
