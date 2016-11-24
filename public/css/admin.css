@@ -1,0 +1,45 @@
+#admin-wrap {
+  background: #ffffff;
+}
+.admin-tab {
+  margin-top: 20px;
+  display: inline-block;
+	list-style: none;
+	padding-left: 0;
+	width: 100%;
+
+}
+.admin-tab li{
+  display: inline-block;
+  width: 50%;
+}
+.admin-tab li button {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+	font-size: 15px;
+	color:#0d0d0d;
+	padding-right: 20px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.admin-tab li button:hover {
+	border-bottom: 4px solid #6694ff;
+}
+.admin-tab li button:focus {
+	border: none;
+	outline: none;
+  border-bottom: 4px solid #6694ff;
+}
+table {
+  margin-top: 10px;
+}
+#th {
+  font-weight: bold;
+  height: 30px;
+  border-bottom: 1px solid black;
+}
+.tb {
+  height: 40px;
+  border-bottom: 1px solid #e8e8e8;
+}

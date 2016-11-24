@@ -89,8 +89,13 @@ var Header = React.createClass({
           </li>
 
           <li>
-            <Link to="/single">
+            <Link to="/bidding">
               <button className="dropbtn">Đang đấu giá</button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/admin">
+              <button className="dropbtn">Trang quản trị</button>
             </Link>
           </li>
         </ul>
@@ -104,7 +109,7 @@ var Header = React.createClass({
           </li>
 
           <li>
-            <Link to="/single">
+            <Link to="/bidding">
               <button className="dropbtn">Đang đấu giá</button>
             </Link>
           </li>

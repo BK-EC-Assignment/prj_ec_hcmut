@@ -12,7 +12,8 @@ var Categories = require('../components/Categories');
 var SignUp = require('../containers/HandleRegister');
 var UserPage = require('../components/UserPage');
 var EditPassword = require('../containers/HandleEditPassword');
-
+var Admin = require('../components/Admin');
+var Bidding = require('../components/Bidding');
 var routes = (
   <Router history={hashHistory}>
     <Route path='/' component={Main}>
@@ -23,6 +24,8 @@ var routes = (
       <Route path="/category/:category" header = "Categories" component={Categories} />
       <Route path="/profile" header = "UserPage" component={UserPage} />
       <Route path="/editpassword" header = "EditPassword" component={EditPassword} />
+      <Route path="/admin" header="Admin" component={Admin} />
+      <Route path="/bidding" header="Bidding" component={Bidding} />
     </Route>
   </Router>
 );
