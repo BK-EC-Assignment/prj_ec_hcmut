@@ -32,8 +32,8 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 app.use(seneca.export('web'))
 
-// seneca.use('./../lib/registerAPI')
-// seneca.use('./../lib/loginAPI')
+seneca.use('./../lib/registerAPI')
+seneca.use('./../lib/loginAPI')
 seneca.use('./../lib/logoutAPI')
 seneca.use('./../lib/changePassword')
 seneca.use('./../lib/auctionAPI')
@@ -42,6 +42,7 @@ seneca.use('./../lib/productAPI')
 seneca.use('./../lib/detailProductAPI')
 seneca.use('./../lib/getAuctionProductAPI')
 seneca.use('./../lib/filterProductAPI')
+seneca.use('./../lib/getListUserAPI')
 
 
 app.use('/', routes)
