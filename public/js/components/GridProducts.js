@@ -22,7 +22,6 @@ var GridProducts = React.createClass({
 	},
 
 	componentWillMount: function () {
-		var self = this
 		var settings = {
 		  "async": true,
 		  "crossDomain": true,
