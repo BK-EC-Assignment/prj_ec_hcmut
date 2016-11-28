@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactRouter = require('react-router');
+var PropTypes = React.PropTypes;
 var Admin = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
@@ -8,7 +9,8 @@ var Admin = React.createClass({
   getInitialState: function() {
     return {
       adminTab: 'user',
-      UsersList: []
+      UsersList: [],
+      productList: []
     }
   },
 
@@ -39,6 +41,117 @@ var Admin = React.createClass({
     }.bind(this));
   },
 
+  changeStatus: function (email) {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:7770/api/users/changeStatus",
+      "method": "POST",
+      "headers": {
+        "token": getCookie('token'),
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "email": email
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
+      if (response.meta.success === 1) {
+        PNotify.removeAll();
+          new PNotify({
+              title: 'Success!',
+              text: 'You have changed ' + email + ' status',
+              type: 'success',
+              delay: 3000
+          });
+      }
+    });
+  },
+
+  componentDidMount: function () {
+    var settings = {
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "http://localhost:7770/api/product",
+		  "method": "GET",
+		  "headers": {
+		    "token": getCookie('token'),
+		    "cache-control": "no-cache",
+		  }
+		}
+
+		$.ajax(settings).done(function (response) {
+			this.setState({
+				productList: response.response
+			})
+		}.bind(this));
+  },
+
+  handleRemove: function (id) {
+    var self = this;
+    (new PNotify({
+        title: 'Confirmation Needed',
+        text: 'Are you sure?',
+        icon: 'glyphicon glyphicon-question-sign',
+        hide: false,
+        confirm: {
+            confirm: true
+        },
+        buttons: {
+            closer: false,
+            sticker: false
+        },
+        history: {
+            history: false
+        }
+    })).get().on('pnotify.confirm', function() {
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:7770/api/product",
+        "method": "DELETE",
+        "headers": {
+          "token": getCookie("token"),
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "data": {
+          "productId": id
+        }
+      }
+
+      $.ajax(settings).done(function (response) {
+        if (response.meta.success === 1) {
+          PNotify.removeAll();
+            new PNotify({
+                title: 'Success!',
+                text: "Success!",
+                type: 'success',
+                delay: 3000
+            });
+        } else {
+          PNotify.removeAll();
+            new PNotify({
+                title: 'Error',
+                text: response.meta.message,
+                type: 'error'
+            });
+        }
+      });
+    }).on('pnotify.cancel', function() {
+
+    });
+  },
+
+  handleEdit: function (id) {
+    this.context.router.push({
+      pathname: '/edit/' + id.substring(4),
+			query: {
+				id: id.substring(4)
+			}
+    })
+  },
+
   render: function() {
     flag = this.state.adminTab;
     var tab = '';
@@ -49,6 +162,7 @@ var Admin = React.createClass({
       borderBottom: 'none',
     }
     if (flag === 'user') {
+      var self = this;
       var ListUser = this.state.UsersList.map(function (user, i) {
         return (
           <tr className="tb"  key={i+1}>
@@ -58,11 +172,11 @@ var Admin = React.createClass({
             <td >{user.address}</td>
             <td >{user.active === true ? 'Hoạt động' : 'Tạm dừng'}</td>
             <td >
-              <button>Change</button>
+              <button onClick={self.changeStatus.bind(self,user.email)}>{user.active === true ? 'Tạm Dừng' : 'Hoạt động'}</button>
             </td>
           </tr>
         )
-      })
+      });
       tab = (
           <div className="table-responsive">
             <table id="user-table" className="table table-hover ">
@@ -82,39 +196,48 @@ var Admin = React.createClass({
       )
     }
   else {
+    var self = this;
+    var ListProduct = this.state.productList.map(function (product, i) {
+      var categories = ''
+      if (product.categories === 'giai-tri') {
+        categories = 'Giải Trí'
+      } else if (product.categories === 'do-gia-dung') {
+        categories = 'Đồ Gia Dụng'
+      } else {
+        categories = 'Đồ điện tử'
+      }
+      return (
+        <tr className="tb" key={i+1}>
+          <td className="rewardImage1 thumbnail_wrapper1"><img src={product.picture} alt="#"/></td>
+          <td >{product.name}</td>
+          <td >{categories}</td>
+          <td >{product.cost_min}</td>
+          <td >{product.time}</td>
+          <td >
+            <button>Chỉnh sửa</button>
+          </td>
+          <td >
+            <button onClick={self.handleRemove.bind(self,product.productId)}>Xóa</button>
+          </td>
+        </tr>
+      )
+    });
     tab = (
       <div>
         <div className="table-responsive">
           <table id="user-table" className="table table-hover ">
-            <tr id="th">
-              <td >Tên sản phẩm</td>
-              <td >Danh mục</td>
-              <td >Tình trạng</td>
-              <td >Giá hiện tại</td>
-              <td >Giá cao nhất</td>
-              <td >Người đấu giá</td>
-              <td >Còn lại</td>
-            </tr>
-            <tr className="tb">
-              <td >Iphone 7</td>
-              <td >Điện thoại</td>
-              <td >Đang đấu giá</td>
-              <td >11 400 000đ</td>
-              <td >20 100 000đ</td>
-              <td >phamtrantri@gmail.com</td>
-              <td >4 ngày 3:11:12</td>
-              <td></td>
-            </tr>
-            <tr className="tb">
-              <td >Iphone 7</td>
-              <td >Điện thoại</td>
-              <td >Đang đấu giá</td>
-              <td >11 400 000đ</td>
-              <td >20 100 000đ</td>
-              <td >phamtrantri@gmail.com</td>
-              <td >4 ngày 3:11:12</td>
-              <td></td>
-            </tr>
+            <tbody>
+              <tr id="th">
+                <th >Hình ảnh</th>
+                <th >Tên sản phẩm</th>
+                <th >Danh mục</th>
+                <th >Giá khởi điểm</th>
+                <th >Ngày hết hạn</th>
+                <th >Chỉnh sửa</th>
+                <th >Xóa</th>
+              </tr>
+              {ListProduct}
+            </tbody>
           </table>
         </div>
       </div>

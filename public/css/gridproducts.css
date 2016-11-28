@@ -85,3 +85,31 @@
 	font-weight: bold;
 	letter-spacing: -1px;
 }
+
+/**/
+.rewardImage1 {
+  height: 150px;
+}
+
+.thumbnail_wrapper1 {
+  border-bottom: 1px solid #d6d6d6;
+  text-align: center;
+}
+
+.thumbnail_wrapper1::before {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.thumbnail_wrapper1> img {
+  max-width: 100%;
+  max-height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.thumbnailDes1:hover .rewardImage1 {
+  display: none;
+}

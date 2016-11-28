@@ -14,6 +14,7 @@ var UserPage = require('../components/UserPage');
 var EditPassword = require('../containers/HandleEditPassword');
 var Admin = require('../components/Admin');
 var Bidding = require('../components/Bidding');
+var EditProduct = require('../components/EditProduct');
 var routes = (
   <Router history={hashHistory}>
     <Route path='/' component={Main}>
@@ -26,6 +27,7 @@ var routes = (
       <Route path="/editpassword" header = "EditPassword" component={EditPassword} />
       <Route path="/admin" header="Admin" component={Admin} />
       <Route path="/bidding" header="Bidding" component={Bidding} />
+      <Route path="/edit/:key" header="EditProduct" component={EditProduct} />
     </Route>
   </Router>
 );

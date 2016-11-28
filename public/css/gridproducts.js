@@ -76,5 +76,36 @@ export default StyleSheet.create({
     },
     "thumbnailDes:hover rewardImage": {
         "display": "none"
+    },
+    "countdown-container": {
+        "textAlign": "right"
+    },
+    "countdown": {
+        "fontSize": 16,
+        "color": "#0bc62b",
+        "fontWeight": "bold",
+        "letterSpacing": -1
+    },
+    "rewardImage1": {
+        "height": 150
+    },
+    "thumbnail_wrapper1": {
+        "borderBottom": "1px solid #d6d6d6",
+        "textAlign": "center"
+    },
+    "thumbnail_wrapper1::before": {
+        "content": "''",
+        "height": "100%",
+        "display": "inline-block",
+        "verticalAlign": "middle"
+    },
+    "thumbnail_wrapper1> img": {
+        "maxWidth": "100%",
+        "maxHeight": "100%",
+        "display": "inline-block",
+        "verticalAlign": "middle"
+    },
+    "thumbnailDes1:hover rewardImage1": {
+        "display": "none"
     }
 });
