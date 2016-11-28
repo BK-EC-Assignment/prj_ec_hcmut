@@ -51,33 +51,32 @@ var Admin = React.createClass({
     if (flag === 'user') {
       var ListUser = this.state.UsersList.map(function (user, i) {
         return (
-
-            <tr className="tb"  key={i+1}>
-              <td >{user.username}</td>
-              <td >{user.email}</td>
-              <td >{user.phone}</td>
-              <td >{user.address}</td>
-              <td >
-                <select>
-                  <option>Thành viên</option>
-                  <option>Quản trị viên</option>
-                </select>
-              </td>
-            </tr>
-
+          <tr className="tb"  key={i+1}>
+            <td >{user.username}</td>
+            <td >{user.email}</td>
+            <td >{user.phone}</td>
+            <td >{user.address}</td>
+            <td >{user.active === true ? 'Hoạt động' : 'Tạm dừng'}</td>
+            <td >
+              <button>Change</button>
+            </td>
+          </tr>
         )
       })
       tab = (
           <div className="table-responsive">
             <table id="user-table" className="table table-hover ">
-              <tbody id="th">
-                <td >Tên đại diện</td>
-                <td >Email</td>
-                <td >Số điện thoại</td>
-                <td >Địa chỉ</td>
-                <td >Vai trò</td>
+              <tbody>
+                <tr id="th">
+                  <th >Tên đại diện</th>
+                  <th >Email</th>
+                  <th >Số điện thoại</th>
+                  <th >Địa chỉ</th>
+                  <th >Trạng thái</th>
+                  <th> </th>
+                </tr>
+                {ListUser}
               </tbody>
-              {ListUser}
             </table>
           </div>
       )

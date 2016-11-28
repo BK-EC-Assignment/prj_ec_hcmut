@@ -12,7 +12,8 @@ module.exports = function (input) {
           username: user.username,
           email: user.email,
           phone: user.phone,
-          address: user.address
+          address: user.address,
+          active: user.active
         })
       })
       input.onSuccess(response.sort(function (a, b) {
