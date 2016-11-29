@@ -19,7 +19,7 @@ module.exports = function (input) {
             throw GError(libError.HANDLE_FAIL)
           }
           return {
-            response: auction
+            response: auction,
           }
         })
     }).then(function (successData) {

@@ -3,31 +3,66 @@ var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
 var Bidding = React.createClass({
+  getInitialState: function() {
+    return {
+      listAuction: []
+    }
+  },
+
+  componentWillMount: function () {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:7770/api/users/getAuctionUser",
+      "method": "GET",
+      "headers": {
+        "email": getCookie("email"),
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
+      this.setState({
+				listAuction: response.response
+			});
+    }.bind(this));
+  },
+
   render: function() {
-    var products = (
-      <div className="col-md-12 col-sm-12 col-xs-12 category-product">
-        <div className="col-md-6 col-sm-6 col-xs-6 main-left">
-          <div className="col-md-5 col-sm-4 rewardImage thumbnail_wrapper">
-            <img src='../public/js/images/photo02.jpg' alt="#"/>
+    var products = this.state.listAuction.map(function (product, i) {
+      var deadline = new Date(product.time*1000)
+      var timeline = deadline.getDate() + '/' + (deadline.getMonth()+1) + '/' + deadline.getFullYear() +
+                  ' ' + deadline.getHours() + ':' + deadline.getMinutes() + ':' + deadline.getSeconds();
+      var categories = ''
+      if (product.category === 'giai-tri') {
+        categories = 'Giải Trí'
+      } else if (product.category === 'do-gia-dung') {
+        categories = 'Đồ Gia Dụng'
+      } else {
+        categories = 'Đồ điện tử'
+      }
+      return (
+        <div className="col-md-12 col-sm-12 col-xs-12 category-product" key={i+1}>
+          <div className="col-md-6 col-sm-6 col-xs-6 main-left">
+            <div className="col-md-5 col-sm-4 rewardImage thumbnail_wrapper">
+              <img src={product.picture} alt="#"/>
+            </div>
+            <div className="col-md-7 col-sm-8">
+              <h4>{product.name}</h4>
+              <text>Tình trạng: <label>Mới</label></text>
+              <text>Nơi bán: <label>TP.HCM</label></text>
+              <text>Người bán: <label>Clark John</label></text>
+            </div>
           </div>
-          <div className="col-md-7 col-sm-8">
-            <h4>Iphone 7</h4>
-            <text>Tình trạng: <label>Mới</label></text>
-            <text>Nơi bán: <label>TP.HCM</label></text>
-            <text>Người bán: <label>Clark John</label></text>
+          <div className="col-md-3 col-sm-3 col-xs-3 category-bid-price">
+            {categories}
+          </div>
+          <div className="col-md-3 col-sm-3 col-xs-3 category-status">
+            {timeline}
           </div>
         </div>
-        <div className="col-md-2 col-sm-2 col-xs-2 category-bid-price">
-          phamtrantri
-        </div>
-        <div className="col-md-2 col-sm-2 col-xs-2 category-expected-price">
-          2 000đ
-        </div>
-        <div className="col-md-2 col-sm-2 col-xs-2 category-status">
-          4 ngày 3:01:02
-        </div>
-      </div>
-    );
+      )
+    }
+  );
     return (
       <div>
         <div className="container">
@@ -52,9 +87,8 @@ var Bidding = React.createClass({
   						<div className="wrap col-md-12">
   							<div className="col-md-12 category-main-header">
   								<div className="col-md-6 col-sm-6 col-xs-6"> SẢN PHẨM</div>
-  								<div className="col-md-2 col-sm-2 col-xs-2 "> NGƯỜI MỚI ĐẤU GIÁ</div>
-  								<div className="col-md-2 col-sm-2 col-xs-2 "> BÁN NGAY</div>
-  								<div className="col-md-2 col-sm-2 col-xs-2 "> CÒN LẠI</div>
+  								<div className="col-md-3 col-sm-3 col-xs-3 "> DANH MỤC</div>
+  								<div className="col-md-3 col-sm-3 col-xs-3 "> HẠN CUỐI</div>
   							</div>
                   {products}
   						</div>
