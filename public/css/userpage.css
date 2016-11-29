@@ -90,3 +90,28 @@
 .user-form label {
   margin-top: 20px;
 }
+/*---------------------------------------------------*/
+.giftNameGroup, .uploadImageGroup, .descriptionGroup {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.giftNameGroup input {
+  border: 1px solid #b3b2b0!important;
+  border-radius: 5px !important;
+  box-shadow: 0px 1px 4px #b3b2b0 !important;
+}
+.uploadImageGroup .btn{
+  margin-top: 1em !important;
+}
+.uploadImageGroup> .col-lg-8 {
+  padding: 0;
+  padding-left: 10px;
+}
+.uploadImageGroup> .col-lg-4 {
+  padding-right: 30px;
+  padding-left: 0px;
+}
+.caption .btn {
+  margin-top: 0;
+}

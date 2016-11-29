@@ -172,7 +172,7 @@ var Admin = React.createClass({
             <td >{user.address}</td>
             <td >{user.active === true ? 'Hoạt động' : 'Tạm dừng'}</td>
             <td >
-              <button onClick={self.changeStatus.bind(self,user.email)}>{user.active === true ? 'Tạm Dừng' : 'Hoạt động'}</button>
+              <button className="btn btn-warning" onClick={self.changeStatus.bind(self,user.email)}>{user.active === true ? 'Tạm Dừng' : 'Hoạt động'}</button>
             </td>
           </tr>
         )
@@ -214,10 +214,10 @@ var Admin = React.createClass({
           <td >{product.cost_min}</td>
           <td >{product.time}</td>
           <td >
-            <button>Chỉnh sửa</button>
+            <button className="btn btn-info">Chỉnh sửa</button>
           </td>
           <td >
-            <button onClick={self.handleRemove.bind(self,product.productId)}>Xóa</button>
+            <button className="btn btn-danger" onClick={self.handleRemove.bind(self,product.productId)}>Xóa</button>
           </td>
         </tr>
       )
