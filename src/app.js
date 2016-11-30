@@ -11,6 +11,7 @@ var path = require('path')
 var webpack = require('webpack')
 var webpackMiddleware = require('webpack-dev-middleware')
 var config = require('./../webpack.config.js')
+var seojs = require('express-seojs');
 
 var compiler = webpack(config)
 
@@ -18,6 +19,7 @@ var conf = {
   port: argv.p || 7770
 }
 
+app.use(seojs('YOUR_API_KEY'))
 app.engine('jsx', require('express-react-views').createEngine())
 app.set('port', conf.port)
 app.use(cors())
@@ -45,6 +47,7 @@ seneca.use('./../lib/filterProductAPI')
 seneca.use('./../lib/getListUserAPI')
 seneca.use('./../lib/changeStatusUserAPI')
 seneca.use('./../lib/getListAuctionUser')
+seneca.use('./../lib/searchProduct')
 
 
 app.use('/', routes)

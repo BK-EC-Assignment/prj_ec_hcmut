@@ -9,7 +9,8 @@ var Header = React.createClass({
 
   getInitalState: function () {
     return ({
-      token: getCookie('token')
+      token: getCookie('token'),
+      keyword: ''
     })
   },
 
@@ -53,6 +54,21 @@ var Header = React.createClass({
 			query: {
 				category: category
 			}
+    })
+  },
+
+  updateKeyword: function (e) {
+    this.setState({
+      keyword: e.target.value
+    })
+  },
+
+  onSubmitUser: function () {
+    this.context.router.push({
+      pathname: '/search/' + this.state.keyword,
+      query: {
+        keyword: this.state.keyword
+      }
     })
   },
 
@@ -129,10 +145,15 @@ var Header = React.createClass({
             <div id="main-search" className="col-md-6 col-sm-5 col-xs-7">
               <div className="form-group">
                 <div id="div-search" className="col-md-10 col-sm-10 col-xs-10">
-                  <input type="text" className="form-control" id="search-input" placeholder="Tôi muốn mua ..."/>
+                  <input type="text"
+                         className="form-control"
+                         id="search-input"
+                         placeholder="Tôi muốn mua ..."
+                         onChange={self.updateKeyword}
+                         value={self.keyword}/>
                 </div>
                 <div id="div-button" className="col-md-2 col-sm-2 col-xs-2">
-                  <button type="button" className="btn btn-success" id="search-button"><i className="glyphicon glyphicon-search"></i></button>
+                  <button onClick={self.onSubmitUser} type="submit" className="btn btn-success" id="search-button"><i className="glyphicon glyphicon-search"></i></button>
                 </div>
               </div>
             </div>
